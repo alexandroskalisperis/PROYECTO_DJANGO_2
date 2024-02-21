@@ -1,0 +1,44 @@
+{% extends "clima.html" %}
+{% load static %}
+
+{% block div %}
+<div id="div_enlace_general">
+    <div id="div_enlace_1">
+
+    </div>
+    <div id="div_enlace_1_interno">
+        {% if not respuesta %}
+            <h2 id="enlace_nombre_lugar">
+                {{mensaje_error}}
+            </h2>
+            <a href="/tiempo/">
+                <input id="boton_return" type="button" value="return">  
+            </a>
+        {% elif respuesta == "" %}
+            <h2 id="enlace_nombre_lugar">
+                {{mensaje_error}}
+            </h2> 
+            <a href="/tiempo/">
+                <input id="boton_return" type="button" value="return">  
+            </a>
+        {% else %}
+            <h2 id="enlace_nombre_lugar">
+                    {{respuesta.name}}
+            </h2> 
+            <p class="enlace_1_datos">latitud: <span class="span_enlaces_internos">{{latitud}}°</span> </p> 
+            <p class="enlace_1_datos">longitud: <span class="span_enlaces_internos">{{longitud}}°</span> </p>
+            <p class="enlace_1_datos">principal function: <span class="span_enlaces_internos">grados centigrados {{grados}}&#x2103</span> </p> 
+            <p class="enlace_1_datos">description: <span class="span_enlaces_internos">sensacion termica {{sensacion}} ST</span> </p> 
+            <div id="div_imagen_enlace_nube_2">
+                <div id="div_temperatura_rojo_1"></div>
+                <div id="div_temperatura_rojo_2"></div>
+                <img id="imagen_enlace_nube_2" src="{% static 'apli_4/images/TERMO.png' %}" alt="">
+                
+            </div>
+            <input id="boton_return" type="button" value="return" onclick="history.go(-1);">                  
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

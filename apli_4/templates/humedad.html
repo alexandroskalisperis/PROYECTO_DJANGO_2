@@ -1,0 +1,43 @@
+{% extends "tiempo.html" %}
+{% load static %}
+
+{% block div %}
+<div id="div_enlace_general">
+    <div id="div_enlace_1">
+
+    </div>
+    <div id="div_enlace_1_interno">
+        {% if not respuesta %}
+            <h2 id="enlace_nombre_lugar">
+                {{mensaje_error}}
+            </h2>
+            <a href="/tiempo/">
+                <input id="boton_return" type="button" value="return">  
+            </a>
+        {% elif respuesta == "" %}
+            <h2 id="enlace_nombre_lugar">
+                {{mensaje_error}}
+            </h2> 
+            <a href="/tiempo/">
+                <input id="boton_return" type="button" value="return">  
+            </a>
+        {% else %}
+            <h2 id="enlace_nombre_lugar">
+                    {{respuesta.name}}
+            </h2> 
+            <p class="enlace_1_datos">latitud: <span class="span_enlaces_internos">{{latitud}}°</span> </p> 
+            <p class="enlace_1_datos">longitud: <span class="span_enlaces_internos">{{longitud}}°</span> </p>
+            <p class="enlace_1_datos">principal function: <span class="span_enlaces_internos">humedad {{humedad}}%</span> </p> 
+            <p class="enlace_1_datos">description: <span class="span_enlaces_internos">presion atmosferica {{presion_atmosferica}} hPa</span> </p> 
+            <div id="div_imagen_enlace_nube_2">
+                <img id="imagen_enlace_nube_3" src="{% static 'apli_4/images/hoja_1.png' %}" alt="">
+                <img id="imagen_enlace_nube_3_1" src="{% static 'apli_4/images/hoja_1.png' %}" alt="">
+                <img id="imagen_enlace_nube_4" src="{% static 'apli_4/images/vaquita_1.png' %}" alt="">
+                
+            </div>
+            <input id="boton_return" type="button" value="return" onclick="history.go(-1);">                 
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

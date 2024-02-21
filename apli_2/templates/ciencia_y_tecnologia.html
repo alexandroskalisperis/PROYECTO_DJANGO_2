@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'apli_2/estilos_ciencia.css' %}">
+    <script src="{% static 'apli_2/estilos_ciencia.js' %}"></script>
+    <link rel="shortcut icon" href="{% static 'apli_2/images/kali celular 001.ico' %}" type="image/x-icon">
+    <title>
+        {{pestana}}
+    </title> 
+</head>
+<body id="body_ciencia">
+    <img id="imagen_nave_1" src="{% static 'apli_2/images/nave2.jpg' %}" alt="">
+    <div id="div_navegacion">
+        <nav id="navegacion_ciencia">
+            <ol>
+                <li class="lista_ciencia"><a href="#">Informatica</a></li>
+                <li class="lista_ciencia"><a href="#">Quimica</a></li>
+                <li class="lista_ciencia"><a href="#">Astronomia</a></li>
+                <li class="lista_ciencia"><a href="#">Egiptologia</a></li>
+                <li class="lista_ciencia"><a href="#">Ciencias Forenses</a></li>
+                <li class="lista_ciencia"><a href="/pagina_principal/">Pagina Principal</a></li>
+            </ol>
+        </nav>
+        <div id="reloj"></div>
+    </div>
+    
+</body>
+</html>

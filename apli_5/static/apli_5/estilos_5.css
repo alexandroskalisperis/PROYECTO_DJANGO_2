@@ -1,0 +1,101 @@
+#body {
+    position: relative;
+    background-attachment: fixed;
+    background-image: linear-gradient(black, rgb(13, 13, 184), black);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 99%;
+    height: 100%;
+}
+
+/* ====================== animacion de las estrellas ================================== */
+#body i{
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: animate linear infinite; 
+}
+@keyframes animate
+{
+    0%
+    {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    10%,90%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+       opacity: 0;
+       transform: translateY(-100px); 
+    }
+
+}
+/* ================================= imagen de la corteza terrestre ============================ */
+#imagen_tierra {
+    position: absolute;
+    width: 150%;
+    height: 450px;
+    left: -100px;
+    top: 550px;
+
+    
+}
+
+/* ================================= titulo y animacion ======================================== */
+#cabezal {
+    position: relative;
+    height: 300px;
+    top: 200px;
+    
+}
+#constelacion {
+    position: absolute;
+    color: transparent;
+    font-size: 25px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    top: 100px;
+    left: 42%;
+    animation: animacion_constelacion 2s ease forwards;
+}
+@keyframes animacion_constelacion {
+    0% {
+        color: transparent;
+        
+    }
+    50% {
+        top: 95px;
+        color: white;
+        text-shadow: 
+            10px 10px 15px white, 
+            -10px -10px 15px white,
+            -20px 10px 15px white,
+            15px -10px 15px white;
+        }
+    100% {
+        color: white;
+        text-shadow: none;
+    }
+}
+
+#division_enlaces {
+    position: relative;
+    display: inline-block;
+    top: 250px;
+    left: 20%;
+}
+.enlaces {
+    position: relative;
+    color: transparent;
+    text-decoration: none;
+    font-size: 20px;
+    margin-right: 150px;
+
+}
+
+
+
+
+

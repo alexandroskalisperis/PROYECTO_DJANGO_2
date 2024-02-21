@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block link %}
+        <link rel="stylesheet" href="{% static 'apli_2/estilos2.css' %}">
+        {% endblock %}
+        {% block script %}
+        <script src="{% static 'apli_2/estilos2.js' %}"></script>
+        {% endblock %}
+        <link rel="shortcut icon" href="{% static 'apli_2/images/kali celular 001.ico' %}" type="image/x-icon">
+
+
+<!-- ================= EL SIGUIENTE LINK ES PARA EL TEXTAREA, PUEDE LIMITAR LA CANTIDAD DE CARACTERES ============== -->
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
+<!-- ================================================================================================================ -->
+
+        <title>
+            {{pestana}}
+        </title>
+    </head>
+<body id="body">
+    <div id="div_general_pag_principal">
+
+        <div class="div_imagen_pag_principal">
+            <img class="imagen_logo" src="{% static 'apli_2/images/LUNA.png' %}" alt="">
+            <img class="imagen_logo2" src="{% static 'apli_2/images/satelite2.png' %}" alt="">
+        </div>
+
+        <div id="div_titulos_pag_principal">
+            <h1>
+                {{titulo}}
+            </h1>
+            <h3>
+                {{subtitulo}} <span style="color: violet;text-shadow: yellow 1px 1px 1px;">&#x2728;&#xfe0e;</span>
+                
+                {{cliente_nombre}} <br>
+                {{mensaje_user}}
+                
+                
+                <br>
+                
+               
+              
+        
+            </h3>
+            <h4 id="simbolo_titulacion">
+                &#x2766;
+            </h4>
+            
+        </div>
+        <div id="reloj"></div>
+    </div>
+    <!-- ============================ NAVEGACION =============================================== -->
+    <div id="div_navegacion">
+        <ul>
+            <li class="lista_navegacion"><a class="enlace_navegacion" href="/pagina_principal/">pagina principal</a></li>
+            <li class="lista_navegacion"><a class="enlace_navegacion" href="/kaligram/">kaligram</a></li>
+            <li class="lista_navegacion"><a class="enlace_navegacion" href="/tiempo/">El Tiempo</a></li>
+            <li class="lista_navegacion"><a class="enlace_navegacion" href="/constelacion/">Constelacion</a></li>
+            <li class="lista_navegacion"><a class="enlace_navegacion" href="/">logout</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================== SECCION PRINCIPAL ============================================ -->
+    {% block content %}
+    <!-- =========================== HIPERVINCULOS DE CREACION ======================================= -->
+        <div class="seccion_pag_principal">
+            <div class="div_generales_internos">
+                <div class="div_1_seccion">
+                    <a href="/ciencia_y_tecnologia/"><img class="imagen_ciencia" src="{% static 'apli_2/images/ciencia1.jpg' %}" alt=""></a>
+                    <h3 class="titulo_seccion">
+                        Ciencia y Tecnologia
+                    </h3>
+                </div>
+                <div class="div_1_seccion">
+                    <a href="#"><img class="imagen_ciencia" src="{% static 'apli_2/images/ciencia2.jpg' %}" alt=""></a>
+                    <h3 class="titulo_seccion">
+                        Articulos Cientificos
+                    </h3>
+                </div>
+            </div>
+            <div class="div_generales_internos">
+                <div class="div_2_seccion">
+                    <a href="#"><img class="imagen_ciencia" src="{% static 'apli_2/images/ciencia3.jpg' %}" alt=""></a>
+                    <h3 class="titulo_seccion">
+                        Formulas y Consultas
+                    </h3>
+                </div>
+                <div class="div_2_seccion">
+                    <a href="#"><img class="imagen_ciencia" src="{% static 'apli_2/images/ciencia4.jpg' %}" alt=""></a>
+                    <h3 class="titulo_seccion">
+                        Seccion de Tutoriales
+                    </h3>
+                </div>
+            </div>        
+        </div>  
+    
+       
+        
+    {% endblock %}
+    <!-- ============================= FOOTER ==================================================== -->
+    <div id="div_footer">
+       <img class="nave_footer" src="{% static 'apli_2/images/nave1.png' %}" alt="">
+        <footer id="footer">
+        
+            <address id="address">
+                Padre.net - &#xa9; - Todos los derechos Reservados <br>
+                Productor General - Alexandros K. Kalisperis <br>
+                La Plata - Buenos Aires - Argentina <br>
+                alejandro_kali@yahoo.com.ar <br>
+                0221-6012872
+            </address>
+            <div id="div_imagenes_frame">
+                
+                <a href="#"><img class="imagen_frame" src="{% static 'apli_2/images/facebook.png' %}" alt=""></a>
+                <a href="#"><img class="imagen_frame" src="{% static 'apli_2/images/twitter.png' %}" alt=""></a>
+                <a href="#"><img class="imagen_frame" src="{% static 'apli_2/images/linkedin.png' %}" alt=""></a>
+            </div>
+        </footer> 
+    </div>
+    
+</body>
+</html>
+
+
+
+
+

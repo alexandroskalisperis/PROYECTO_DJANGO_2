@@ -1,0 +1,47 @@
+#body_ciencia {
+    width: 100%;
+    height: auto;
+    background-color: black;
+}
+/* ================================ DECORACION DE FONDO DE PANTALLA =========================== */
+#imagen_nave_1 {
+    position: absolute;
+    width: 99%;
+    height: 99%;
+    z-index: 0;
+    
+}
+
+
+/* NAVEGACION DE CIENCIA Y TECNOLOGIA */
+#div_navegacion {
+    position: relative; 
+    width: 99%; 
+    height: 160px; 
+    
+
+}
+
+#navegacion_ciencia {
+    position: relative;
+    width: 900px;
+}
+.lista_ciencia {
+    display: inline;
+    list-style: none;
+    margin-inline: 15px;
+    
+}
+a {
+    text-decoration: none;
+    color: greenyellow;
+    font-size: 20px;
+}
+#reloj {
+    position: relative;
+    color: greenyellow;
+    float: inline-end;
+    font-size: 19px;
+    margin-right: 20px;
+    
+}

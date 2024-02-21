@@ -1,0 +1,99 @@
+{% extends "tiempo.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block link %}
+    <link rel="stylesheet" href="{% static 'apli_4/estilos4.css' %}">
+    {% endblock %}
+    {% block script %}
+    <script src="{% static 'apli_4/estilos4.js' %}"></script>
+    {% endblock %}
+    <link rel="shortcut icon" href="{% static 'apli_4/images/kali celular 001.ico' %}" type="image/x-icon">
+
+</head>
+<body>
+    <header id="cabezal_tiempo">
+        <img id="nube_1" src="{% static 'apli_4/images/cloud1.png' %}" alt="">
+        <img id="nube_2" src="{% static 'apli_4/images/cloud2.png' %}" alt="">
+        <img id="nube_3" src="{% static 'apli_4/images/cloud3.png' %}" alt=""> 
+        <img id="nube_4" src="{% static 'apli_4/images/cloud3.png' %}" alt=""> 
+        <div id="div_logo">
+            <img id="imagen_termometro" src="{% static 'apli_4/images/CLIMA_1.png' %}" alt="">
+            <h4 style="position: absolute; color: white;left: 70px; top:150px;">Xronosapp</h4>
+            <img id="imagen_sol" src="{% static 'apli_4/images/CLIMA_2.png' %}" alt="">
+            <img id="imagen_luna" src="{% static 'apli_4/images/CLIMA_3.png' %}" alt="">
+            
+            <div id="div_avion_2">
+                <img id="imagen_avion_2" src="{% static 'apli_4/images/avion_2.png' %}" alt="">
+                <div id="luz_avion_2"></div>
+            </div>
+            
+        </div>
+        {% block form %}
+        <form id="formulario_tiempo" action="/direccion/" method="post">{% csrf_token %}      
+            weather address: <input type="text" name="direccion" id=""> <br>
+            <input id="boton_tiempo" type="submit" value="send">            
+        </form>
+        {% endblock %}
+    </header>
+    <div id="div_hora_externo">
+        <div id="div_hora_interno">
+            {{hora}} La Plata - Buenos Aires - Argentina
+        </div>
+    </div>
+{% block div %}
+<div id="div_enlace_general">
+    
+    <div id="div_enlace_1"></div>
+
+    <div id="div_enlace_1_interno">
+        {% if not respuesta %}
+            <h2 id="enlace_nombre_lugar">
+                {{mensaje_error}}
+            </h2>
+            <a href="/tiempo/">
+                <input id="boton_return" type="button" value="return">  
+            </a>
+        {% elif respuesta == "" %}
+            <h2 id="enlace_nombre_lugar">
+                {{mensaje_error}}
+            </h2> 
+            <a href="/tiempo/">
+                <input id="boton_return" type="button" value="return">  
+            </a>
+        {% else %}
+            <h2 id="enlace_nombre_lugar">
+                    {{respuesta.name}}
+            </h2> 
+            <p class="enlace_1_datos">latitud: <span class="span_enlaces_internos">{{latitud}}</span> </p> 
+            <p class="enlace_1_datos">longitud: <span class="span_enlaces_internos">{{longitud}}</span> </p>
+            <p class="enlace_1_datos">principal function: <span class="span_enlaces_internos">{{respuesta.weather.0.main}}</span> </p> 
+            <p class="enlace_1_datos">description: <span class="span_enlaces_internos">{{respuesta.weather.0.description}}</span> </p> 
+            <img id="imagen_enlace_nube_1" src="http://openweathermap.org/img/w/{{codigo_imagen}}.png" alt="">   
+            
+            <input id="boton_return" type="button" value="return" onclick="history.go(-1);">      
+        {% endif %}
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+<footer id="footer_tiempo">
+    <address id="footer_address">
+        <ul>
+            <li class="lista_footer"><span class="footer_span">&#x2055;</span> Todos los derechos reservados <span class="footer_span">&#xa9;</span> propiedad intelectual 2023 <span class="footer_span">&#x2055;</span></li>
+            <li class="lista_footer">Alexandros K. kalisperis for Xronosapp</li>
+            <li class="lista_footer">alejandro_kali@yahoo.com.ar // alexandroskalisperis@gmail.com</li>
+            <li class="lista_footer">0054-221-6012872</li>
+            <li class="lista_footer">CP: 1900</li>
+            <li class="lista_footer">Argentina-La Plata-Buenos Aires-Argentina</li>
+        </ul>
+    </address>
+</footer>
+</body>

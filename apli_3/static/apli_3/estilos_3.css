@@ -1,0 +1,182 @@
+#body_kaligram {
+    background-attachment: fixed;
+    background-image: linear-gradient(#725959, #00BDFF, #0027FF);
+} 
+/* ============================ EL PRIMER DIV CONTENEDOR DE LOS TITULOS ==================================== */
+#contenedor_titulos {
+    width: 100%;
+    height: auto;
+    border: 1px solid white;
+    
+}
+
+#titulo_1 {
+    color: yellow;
+    text-align: center;
+    font-family: cursive;
+    
+}
+#subtitulo_1 {
+    color: yellow;
+    text-align: center;
+    font-family: cursive;
+}
+
+#tiempo {
+    color: yellow;
+    text-align: end;
+    margin-right: 50px;
+}
+/* ================================== SEGUNDO DIV CONTENEDOR DE LOS MENSAJES ================================= */
+.contenedor_mensajes {
+    position: relative;
+    text-align: center;
+    border: 1px solid white;
+    width: 100%;
+    height: auto;
+   
+}
+.texto_1 {
+    color: yellow;
+    text-align: center;
+    font-family: cursive;
+    font-size: 16px;
+}
+.texto_2 {
+    color: yellow;
+    text-align: center;
+    font-family: cursive;
+    font-size: 18px;
+    text-shadow: black 5px 5px 5px;
+}
+
+.mensajeria {
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+textarea[name="textarea"] {
+    resize: none;
+    background-color: black;
+    color: white;
+    font-size: 17px;
+    font-family: cursive;
+    box-shadow: black 15px 15px 15px;
+}
+textarea[name="textarea_2"] {
+    resize: none;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-family: cursive;
+    box-shadow: black 15px 15px 15px;
+}
+input[name="boton_like"] {
+    width: 100px;
+    height: 50px;
+    background-color: #0027FF;
+    color: white;
+    box-shadow: black 15px 15px 15px;
+    font-size: 16px;
+    font-family: cursive;
+    border: 1px solid white;
+    border-radius: 10px 21px 10px 21px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+input[name="boton_like"]:hover {
+    color: rgb(0, 0, 0);
+    background-color: #5cf189;
+    border-radius: 21px 10px 21px 10px;
+    transition: 0.3s ease;
+    
+}
+
+/* ================= DIV MENSAJES ENVIADOS ================================================= */
+#div_mensaje_enviado {
+    position: relative;
+    
+   
+}
+
+
+#div_mensaje_interno {
+    position: relative;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+#div_izquierda_botones {
+    position: absolute;
+    margin-left: 28%;
+    margin-top: 8%;
+    
+}
+
+.class_div_izquierdo {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.botones_izquierdos {
+    width: 110px;
+    height: 50px;
+    background-color: #0027FF;
+    color: white;
+    box-shadow: black 15px 15px 15px;
+    font-size: 16px;
+    font-family: cursive;
+    border: 1px solid white;
+    border-radius: 10px 21px 10px 21px;
+
+}
+
+
+#aside_likes {
+    position: absolute;
+    display: inline-block;
+    margin-top: 100px;
+    color: white;
+    
+    
+}
+.lista_fotos_likes {
+    color: white;
+    list-style-type: none;
+    margin-bottom: 15px;
+    
+
+}
+.class_imagen {
+    width: 45%;
+    border-radius: 50%;
+    
+}
+.class_imagen:hover {
+    transform: rotate(20deg);
+    box-shadow: 0px 0px 20px yellow;
+    transition: 0.5s ease;
+    
+}
+
+
+.span_numero_likes {
+    color: yellow;
+    font-family: cursive;
+    margin-left: 10px;
+}
+
+
+/* ================================== FOOTER ================================================= */
+#footer {
+    margin-bottom: 0%;
+    background-color: black;
+    border: 1px solid white;
+}
+.lista_footer {
+    color: yellow;
+    text-align: center;
+    font-size: 14px;
+    font-family: cursive;
+    list-style-type: none;
+
+}

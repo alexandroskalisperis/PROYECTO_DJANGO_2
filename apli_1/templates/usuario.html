@@ -1,0 +1,17 @@
+{% extends "login.html" %}
+{% load static %}
+
+{% block content %}
+<div id="div_form_registrate">
+    <p class="parrafo_registrate">
+        Ingrese su nombre y clave
+    </p>
+    <form class="form_registrate" action="/chequear_usuario/" method="post">{% csrf_token %}
+        <table>
+            {{usuario_form}}
+        </table>
+        <input class="boton_form_registrate" type="submit" value="enviar">
+    </form>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block link %}
+    <link rel="stylesheet" href="{% static 'apli_3/estilos_3.css' %}">
+    {% endblock %}
+    {% block script %}
+    <script src="{% static 'apli_3/estilos3.js' %}"></script>
+    {% endblock %}
+    <link rel="shortcut icon" href="{% static 'apli_3/images/kali celular 001.ico' %}" type="image/x-icon">
+
+    <title>{{titulo_pagina}}</title>
+</head>
+<body id="body_kaligram">
+    
+    <!--=================== PRIMER DIV CONTENEDOR DE LOS TITULOS ==========================-->
+    <div id="contenedor_titulos">
+        <h1 id="titulo_1">
+            kaligram 
+        </h1>
+        <h2 id="subtitulo_1">
+            muro interactivo
+        </h2>
+        <h3 id="tiempo">
+            {{tiempo}}
+        </h3>
+    </div>
+    
+   
+    {% block content %}
+    <!-- ================== SEGUNDO DIV CONTENEDOR DE LOS MENSAJES ========================== -->
+    <div class="contenedor_mensajes">    
+        <p class="texto_1">
+            Welcome {{cliente_nombre}}!!! <br>
+            ingrese su mensaje
+        </p>
+        <form action="/mensajeria/" method="post" class="mensajeria">{% csrf_token %}  
+            <textarea name="textarea" id="" cols="80" rows="10"></textarea> <br>
+            <input type="submit" value="grama" name="boton_like">
+        </form>
+       <hr style="color: white;"> 
+
+
+    <!-- ================== LISTA DE MENSAJES DE LA BASE DE DATOS / ENVIO DE LIKE DISLIKE Y BORING =============================== -->
+
+        {% for mensaje in mensajes %}
+        <!-- DIV GENERAL DE LOS MENSAJES ENVIADOS -->
+        <div id="div_mensaje_enviado">
+            <form method="post">{% csrf_token %}
+                <div id="div_izquierda_botones">
+                    <ul>
+                        <li class="class_div_izquierdo"><input type="submit" value="share" class="botones_izquierdos"></li>
+                        <li class="class_div_izquierdo"><input type="submit" value="save" class="botones_izquierdos"></li>
+                        <li class="class_div_izquierdo"><input type="submit" value="notifications" class="botones_izquierdos"></li>
+                    </ul>
+                </div>
+
+                <!-- DIV CON EL TEXTAREA Y LOS BOTONES DE LIKES -->
+                <div id="div_mensaje_interno">
+                    <div style="display: inline-block;">
+                        <p class="texto_2">
+                            {{mensaje.nombre_cliente}} <a href="/pagina_principal/" style="color: white;font-size: large;">salir</a>
+                        </p> 
+                        <p class="texto_2">
+                                {{mensaje.id}}
+                        </p>
+                        <input type="hidden" name="mensaje_id" value="{{mensaje.id}}">
+                        <textarea name="textarea_2" id="textarea" cols="30" rows="10" readonly>{{mensaje.mensaje_cliente}}</textarea> <br>
+                        
+
+
+                        <input type="submit" value="like" formaction="/like/" name="boton_like" id="boton_perro_like">
+                        <input type="submit" value="dislike" formaction="/dislike/" name="boton_like" id="boton_perro_dislike">
+                        <input type="submit" value="boring" formaction="/boring/" name="boton_like" id="boton_perro_aburrido"> 
+                    </div>
+                         
+                    <!-- DIV CON LAS FOTOS DE LOS PERROS LIKES. -->
+                    <div id="aside_likes">
+                        <ul> 
+                            <li class="lista_fotos_likes"><img class="class_imagen" id="imagen_like" src="{% static 'apli_3/images/perro1.png' %}"><span class="span_numero_likes">{{mensaje.perro1_like}}</span></li>
+                            <li class="lista_fotos_likes"><img class="class_imagen" src="{% static 'apli_3/images/perro2.png' %}"><span class="span_numero_likes">{{mensaje.perro2_dislike}}</span></li>
+                            <li class="lista_fotos_likes"><img class="class_imagen" src="{% static 'apli_3/images/perro3.png' %}"><span class="span_numero_likes">{{mensaje.perro3_aburrido}}</span></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                
+                
+            </form>
+            
+            <hr style="color: white;">
+        </div>
+        {% endfor %}
+
+       
+    
+    </div>
+    {% endblock %}
+    
+
+
+
+
+
+
+    <!-- ============================ FOOTER =============================================== -->
+    <div id="footer">
+        <address>
+            <ul>
+                <li class="lista_footer">Todos los derechos reservados &#9400; a los autores de esta pagina.</li>
+                <li class="lista_footer">Direccion y Produccion: Alexandros Konstantinos Kalisperis</li>
+                <li class="lista_footer">Direccion de Email: alejandro_kali@yahoo.com.ar // alexandroskalisperis@gmail.com</li>
+                <li class="lista_footer">Direccion Vivienda: Calle 58 numero 1218 - La Plata - Buenos Aires - Argentina</li>
+                <li class="lista_footer">Telefono: 0054-221-6012872</li>
+            </ul>
+        </address>
+    </div>
+</body>
+</html>

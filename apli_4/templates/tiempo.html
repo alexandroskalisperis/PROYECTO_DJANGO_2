@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block link %}
+    <link rel="stylesheet" href="{% static 'apli_4/estilos4.css' %}">
+    {% endblock %}
+    {% block script %}
+    <script src="{% static 'apli_4/estilos4.js' %}"></script>
+    {% endblock %}
+    <link rel="shortcut icon" href="{% static 'apli_4/images/kali celular 001.ico' %}" type="image/x-icon">
+
+</head>
+<body id="body">
+    <header id="cabezal_tiempo">
+        <img id="nube_1" src="{% static 'apli_4/images/cloud1.png' %}" alt="">
+        <img id="nube_2" src="{% static 'apli_4/images/cloud2.png' %}" alt="">
+        <img id="nube_3" src="{% static 'apli_4/images/cloud3.png' %}" alt=""> 
+        <img id="nube_4" src="{% static 'apli_4/images/cloud3.png' %}" alt=""> 
+        <div id="div_logo">
+            <img id="imagen_termometro" src="{% static 'apli_4/images/CLIMA_1.png' %}" alt="">
+            <h4 style="position: absolute; color: white;left: 70px; top:150px;">Xronosapp</h4>
+            <img id="imagen_sol" src="{% static 'apli_4/images/CLIMA_2.png' %}" alt="">
+            <img id="imagen_luna" src="{% static 'apli_4/images/CLIMA_3.png' %}" alt="">
+            
+            <div id="div_avion_2">
+                <img id="imagen_avion_2" src="{% static 'apli_4/images/avion_2.png' %}" alt="">
+                <div id="luz_avion_2"></div>
+            </div>
+            
+        </div>
+        {% block form %}
+        <form id="formulario_tiempo" action="/direccion/" method="post">{% csrf_token %}      
+            weather address: <input type="text" name="direccion" id=""> <br>
+            <input id="boton_tiempo" type="submit" value="send"> 
+            <input id="boton_tiempo_1" type="button" value="pagina principal" onclick="window.history.go(-1)">           
+        </form>
+        {% endblock %}
+    </header>
+    <div id="div_hora_externo">
+        <div id="div_hora_interno">
+            {{hora}} La Plata - Buenos Aires - Argentina
+        </div>
+    </div>
+    
+    {% block div %}
+    <div id="div_general">
+        <div class="div_cuadrado">
+            <div class="div_interno_izquierdo_1">
+                <a id="vinculo_1" href="/clima/">clima <span id="numero_temp_1">&#x21e8; {{respuesta.weather.0.description}}</span></a>
+            </div>
+            <div class="div_interno_izquierdo_2">
+                <a id="vinculo_2" href="/temperatura/">temperatura <span id="numero_temp_2">&#x21e8; {{grados}} &#x2103 // {{sensacion}} ST</span></a>
+            </div>
+            <div class="div_interno_izquierdo_3">
+                <a id="vinculo_3" href="/humedad/">humedad <span id="numero_temp_3">&#x21e8; {{respuesta.main.humidity}} %</span></a>
+            </div>
+        </div>
+        <div class="div_cuadrado">
+            {% if direccion %}
+            <h2 id="titulo_1">
+                {{direccion}}
+            </h2>
+            {% else %}
+            <h2 id="titulo_1">
+                el tiempo <br>
+            
+            </h2>
+            {% endif %}
+        </div>
+        <div class="div_cuadrado">
+            <div class="div_interno_derecho_1">
+                <a id="vinculo_4" href="/visibilidad/">visibilidad <span id="numero_temp_4">&#x21e8; {{respuesta.visibility}} metros</span></a>
+            </div>
+            <div class="div_interno_derecho_2">
+                <a id="vinculo_5" href="/viento/">viento <span id="numero_temp_5">&#x21e8; speed: {{respuesta.wind.speed}} m/s // deg: {{respuesta.wind.deg}}°</span></a>
+            </div>
+            <div class="div_interno_derecho_3">
+                <a id="vinculo_6" href="/coordenadas/">coordenadas <span id="numero_temp_6">&#x21e8; longitud: {{respuesta.coord.lon}} // latitud: {{respuesta.coord.lat}}</span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <p style="color: white;">
+            {{respuesta}} <br>
+        </p>
+    </div>
+    
+    <div id="mapa_weather">
+        <div class="mapouter">
+            <div class="gmap_canvas">
+                <iframe width="898" height="560" id="gmap_canvas" src={{todas_las_partes}} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                <a href="https://online.stopwatch-timer.net/">timer stopwatch</a><br>
+                <a href="https://textcaseconvert.com/"></a><br>
+                <a href="https://online-timer.me/"></a><br>
+                <style>.mapouter{position: relative;text-align: right;height: 560px;width: 898px;}</style>
+                <a href="https://www.embedmaps.co">embed google maps</a>
+                <style>.gmap_canvas{overflow: hidden;background: none !important;height: 560px;width: 898px;}</style>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <footer id="footer_tiempo">
+        <address id="footer_address">
+            <ul>
+                <li class="lista_footer"><span class="footer_span">&#x2055;</span> Todos los derechos reservados <span class="footer_span">&#xa9;</span> propiedad intelectual 2023 <span class="footer_span">&#x2055;</span></li>
+                <li class="lista_footer">Alexandros K. kalisperis for Xronosapp</li>
+                <li class="lista_footer">alejandro_kali@yahoo.com.ar // alexandroskalisperis@gmail.com</li>
+                <li class="lista_footer">0054-221-6012872</li>
+                <li class="lista_footer">CP: 1900</li>
+                <li class="lista_footer">Argentina-La Plata-Buenos Aires-Argentina</li>
+            </ul>
+        </address>
+    </footer>
+   
+</body>
+</html>

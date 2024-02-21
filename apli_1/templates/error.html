@@ -1,0 +1,18 @@
+{% extends "login.html" %}
+{% load static %}
+
+{% block content %}
+<div id="div_form_registrate">
+    <p class="parrafo_registrate">
+        Usted a cometido un error en el ingreso de sus datos <br>
+        por favor intentelo de nuevo.
+    </p>
+    <form class="form_registrate" action="/pagina_principal/" method="post">{% csrf_token %}
+        <table>
+            {{usuario_form}}
+        </table>
+        <input class="enlace_pagina_principal" type="submit" value="pagina principal">
+    </form>
+    
+</div>
+{% endblock %}

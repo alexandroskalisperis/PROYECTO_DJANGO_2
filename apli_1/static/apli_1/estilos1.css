@@ -1,0 +1,138 @@
+body {
+    background-image: linear-gradient(rgb(70, 47, 112), rgb(131, 131, 228),rgb(46, 33, 71));
+    background-attachment: fixed;
+}
+#div_general_titulo {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    
+}
+#div_interno_titulo {
+    position: absolute;
+    text-align: center;
+    color: white;
+    margin-left: 42%;
+    margin-top: 300px;
+    font-size: 0px;
+    animation: animacion1 6s ease forwards;
+}
+@keyframes animacion1 {
+    0% {
+        margin-left: 42%;
+        margin-top: 300px;
+        font-size: 0px; 
+    }
+    50% {
+        margin-left: 41%;
+        margin-top: 200px;
+        font-size: 10px;
+        text-shadow:black 0px 5px 15px;
+    }
+    100% {
+        margin-left: 40%;
+        margin-top: 20px;
+        font-size: 20px;
+        text-shadow:black 0px 16px 8px;
+    }
+}
+#div_registro {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    
+}
+#div_interno_registro {
+    position: absolute;
+    margin-left: 34%;
+    margin-top: 20px;
+}
+.enlace_registro {
+    position: relative;
+    color: transparent;
+    text-decoration: none;
+    margin: 50px;
+    font-size: 22px;
+    animation: animacion2 2s ease forwards 5s;
+}
+@keyframes animacion2 {
+    0% {
+        color: transparent;
+    }
+    100% {
+        color: white;
+        text-shadow: black 2px 6px 3px;
+    }
+}
+
+/* ========================== registrate.html =================================== */
+#div_form_registrate {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin-top: 10%;
+    border: 1px solid white;
+    border-radius: 12% 30%;
+    box-shadow: black 12px 12px 12px;
+    
+}
+.parrafo_registrate {
+    position: relative;
+    color: transparent;
+    text-align: center;
+    font-size: 20px;
+    font-family: cursive;
+    top: 0px;
+    left: 0%;
+    animation: animacion3 3s ease forwards;
+}
+@keyframes animacion3 {
+    0% {
+        color: transparent;
+    }
+    100% {
+        color: white;
+        text-shadow: black 5px 5px 2px;
+        
+    }
+}
+
+.form_registrate {
+    position: absolute;
+    background-color: rgb(229, 160, 243);
+    margin-left: 41%;
+    margin-top: 2%;
+    font-family: cursive;
+    border: 1px solid black;
+    box-shadow: black 5px 15px 5px;
+}
+.boton_form_registrate {
+    position: relative;
+    text-decoration: none;
+    border: 1px solid black;
+    color: white;
+    background-color: blue;
+    padding: 4px;
+    font-family: cursive;
+    font-size: 16px;
+    margin-left: 50%;
+    margin-top: 8%;
+    margin-bottom: 3%;
+    width: 30%;
+    height: 30px;
+}
+.enlace_pagina_principal {
+    position: relative;
+    color: white;
+    font-size: 18px;
+    font-family: cursive;
+    text-decoration: none;
+    margin-left: 43%;
+    top: 50px;
+    border: 1px solid white;
+    border-radius: 12%;
+    background-color: blue;
+    padding: 8px;
+}
+
+  

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block link %}{% endblock %}
+        <link rel="stylesheet" href="{% static 'apli_1/estilos1.css' %}">
+        {% block script %}{% endblock %}
+        <script src="{% static 'apli_1/estilos1.js' %}"></script>
+        <link rel="shortcut icon" href="{% static 'apli_1/images/kali celular 001.ico' %}" type="image/x-icon">
+        <title>
+            {{pestana}}
+        </title>
+    </head>
+<body>
+    
+    {% block content %}
+    <div id="div_general_titulo">
+        <div id="div_interno_titulo">
+            <h1>
+                {{titulo}}
+            </h1>
+            <h2>
+                {{subtitulo}}
+            </h2>
+        </div>
+        
+    </div>
+    
+    <div id="div_registro">
+        <div id="div_interno_registro">
+           <a class="enlace_registro" href="/registrate/">
+                registrate
+            </a>
+            <a class="enlace_registro" href="/usuario/">
+                usuario
+            </a> 
+        </div>
+        
+    </div>
+    {% endblock %}
+</body>
+</html>
