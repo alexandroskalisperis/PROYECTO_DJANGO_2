@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from datetime import datetime
-from apli_1.models import Cliente, Mensaje, Estado, Estado_2
+from apli_1.models import Cliente, Mensaje, Estado, Estado_2, Estado_3
 
 # Create your views here.
 
@@ -18,6 +18,7 @@ class Mi_vista(View):
         self.like_1 = None
         self.estado = None
         self.estado_2 = None
+        self.estado_3 = None
         self.guardar_mensaje = None
     # TODAS LAS VISTAS DENTRO DE LA CLASE =====================================
     def kaligram(self,request): 
@@ -52,13 +53,20 @@ class Mi_vista(View):
                 estado = None
             )
             self.estado.save()
+            
             self.estado_2 = Estado_2.objects.create(
                 cliente_estado2 = None,
                 mensaje_foraneo_2 = Mensaje.objects.get(mensaje_cliente = self.textarea),
                 estado2 = None
             )
             self.estado_2.save()
-            
+
+            self.estado_3 = Estado_3.objects.create(
+                cliente_estado3 = None,
+                mensaje_foraneo_3 = Mensaje.objects.get(mensaje_cliente = self.textarea),
+                estado3 = None
+            )
+            self.estado_3.save()
             
             self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
             return render(
@@ -86,19 +94,30 @@ class Mi_vista(View):
             self.estado.estado = True
             self.estado.cliente_estado = self.cliente_nombre
             self.estado.save()
-            if not Estado_2.objects.filter(cliente_estado2=self.cliente_nombre,mensaje_foraneo_2=self.mensaje,estado2=True):
+            if not Estado_2.objects.filter(cliente_estado2=self.cliente_nombre,mensaje_foraneo_2=self.mensaje,estado2=True) and not Estado_3.objects.filter(cliente_estado3=self.cliente_nombre,mensaje_foraneo_3=self.mensaje,estado3=True):
                 self.estado_2.estado2 = False
                 self.estado_2.cliente_estado2 = self.cliente_nombre
                 self.estado_2.save()
+                self.estado_3.estado3 = False
+                self.estado_3.cliente_estado3 = self.cliente_nombre
+                self.estado_3.save()    
             else:
                 if Estado_2.objects.filter(cliente_estado2=self.cliente_nombre,mensaje_foraneo_2=self.mensaje,estado2=True):
                     self.estado_2.estado2 = False
                     self.estado_2.cliente_estado2 = self.cliente_nombre
                     self.estado_2.save()
                     self.mensaje.perro2_dislike -= 1
-                    self.mensaje.save()
+                    self.mensaje.save()  
+                else:
+                    if Estado_3.objects.filter(cliente_estado3=self.cliente_nombre,mensaje_foraneo_3=self.mensaje,estado3=True):
+                        self.estado_3.estado3 = False
+                        self.estado_3.cliente_estado3 = self.cliente_nombre
+                        self.estado_3.save()
+                        self.mensaje.perro3_aburrido -= 1
+                        self.mensaje.save() 
+                    
             self.mensaje.perro1_like += 1
-            self.mensaje.save()
+            self.mensaje.save() 
             
             
         elif Estado.objects.filter(cliente_estado=self.cliente_nombre,mensaje_foraneo=self.mensaje,estado=True):
@@ -146,9 +165,16 @@ class Mi_vista(View):
                 self.estado.save()
                 self.mensaje.perro1_like -= 1
                 self.mensaje.save()
+            elif Estado_3.objects.filter(cliente_estado3=self.cliente_nombre,mensaje_foraneo_3=self.mensaje,estado3=True):
+                self.estado_3.cliente_estado3 = self.cliente_nombre
+                self.estado_3.estado3 = False
+                self.estado_3.save()
+                self.mensaje.perro3_aburrido -= 1
+                self.mensaje.save()  
             else:
                 if not Estado.objects.filter(cliente_estado=self.cliente_nombre,mensaje_foraneo=self.mensaje,estado=True):
                     pass
+                
         else:
             if Estado_2.objects.filter(cliente_estado2=self.cliente_nombre,mensaje_foraneo_2=self.mensaje,estado2=True):
                 self.estado_2.cliente_estado2 = self.cliente_nombre
@@ -180,10 +206,37 @@ class Mi_vista(View):
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]
         self.mensaje = Mensaje.objects.get(id = self.mensaje_id)
+        self.estado_3 = Estado_3.objects.get(mensaje_foraneo_3 = self.mensaje_id)
+        self.estado = Estado.objects.get(mensaje_foraneo=self.mensaje_id)
         
-        self.mensaje.perro3_aburrido += 1
-        self.mensaje.save()
-                
+        if not Estado_3.objects.filter(cliente_estado3=self.cliente_nombre,mensaje_foraneo_3=self.mensaje,estado3=True) or Estado_3.objects.filter(cliente_estado3=self.cliente_nombre,mensaje_foraneo_3=self.mensaje,estado3=False):
+            self.estado_3.cliente_estado3 = self.cliente_nombre
+            self.estado_3.estado3 = True
+            self.estado_3.save()
+            self.mensaje.perro3_aburrido += 1
+            self.mensaje.save()
+            if Estado.objects.filter(cliente_estado=self.cliente_nombre,mensaje_foraneo=self.mensaje,estado=True):
+                self.estado.estado = False
+                self.estado.cliente_estado = self.cliente_nombre
+                self.estado.save()
+                self.mensaje.perro1_like -= 1
+                self.mensaje.save()
+            elif Estado_2.objects.filter(cliente_estado2=self.cliente_nombre,mensaje_foraneo_2=self.mensaje,estado2=True):
+                self.estado_2.estado2 = False
+                self.estado_2.cliente_estado2 = self.cliente_nombre
+                self.estado_2.save()
+                self.mensaje.perro2_dislike -= 1
+                self.mensaje.save()
+            else:
+                if not Estado.objects.filter(cliente_estado=self.cliente_nombre,mensaje_foraneo=self.mensaje,estado=True):
+                    pass
+        else:
+            if Estado_3.objects.filter(cliente_estado3=self.cliente_nombre,mensaje_foraneo_3=self.mensaje,estado3=True):
+                self.estado_3.cliente_estado3 = self.cliente_nombre
+                self.estado_3.estado3 = False
+                self.estado_3.save()
+                self.mensaje.perro3_aburrido -= 1
+                self.mensaje.save() 
 
         self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
         return render(

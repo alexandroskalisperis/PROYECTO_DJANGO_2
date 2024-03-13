@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente, Mensaje, Respuesta, Estado, Estado_2
+from .models import Cliente, Mensaje, Respuesta, Estado, Estado_2, Estado_3
 # Register your models here.
 
 class Cliente_admin(admin.ModelAdmin):
@@ -31,3 +31,9 @@ class Estado_2_admin(admin.ModelAdmin):
     search_fields = ("cliente_estado2", "mensaje_foraneo_2", "estado2")
     list_filter = ("cliente_estado2", "mensaje_foraneo_2", "estado2",)
 admin.site.register(Estado_2, Estado_2_admin)
+
+class Estado_3_admin(admin.ModelAdmin):
+    list_display = ("cliente_estado3", "mensaje_foraneo_3", "estado3")
+    search_fields = ("cliente_estado3", "mensaje_foraneo_3", "estado3")
+    list_filter = ("cliente_estado3", "mensaje_foraneo_3", "estado3",)
+admin.site.register(Estado_3, Estado_3_admin)

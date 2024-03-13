@@ -64,3 +64,13 @@ class Estado_2(models.Model):
         return "%s %s %s %s %s" %(
             self.cliente_estado2," ", self.mensaje_foraneo_2," ", self.estado2,
         )
+    
+class Estado_3(models.Model):
+    cliente_estado3 = models.CharField(max_length=50, null=True)
+    mensaje_foraneo_3 = models.ForeignKey("Mensaje", on_delete=models.CASCADE)
+    estado3 = models.BooleanField(default=False, null=True)
+
+    def __str__(self):
+        return "%s %s %s %s %s" %(
+            self.cliente_estado3," ", self.mensaje_foraneo_3," ", self.estado3,
+        )
