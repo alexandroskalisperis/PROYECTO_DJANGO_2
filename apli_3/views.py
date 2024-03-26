@@ -128,8 +128,6 @@ class Mi_vista(View):
             self.mensaje.perro1_like -= 1
             self.mensaje.save()
             
-                
-
         self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
         return render(
             request,
@@ -141,8 +139,7 @@ class Mi_vista(View):
                 "mensajes": self.mensaje_all,
                 "textarea": self.textarea,
                 "cliente_nombre": self.cliente_nombre,
-                "guardar_mensaje": self.guardar_mensaje,
-                
+                "guardar_mensaje": self.guardar_mensaje,   
             }
         )
     
@@ -198,10 +195,6 @@ class Mi_vista(View):
                 
             }
         )    
-
-
-
-    
     def boring(self, request):
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]

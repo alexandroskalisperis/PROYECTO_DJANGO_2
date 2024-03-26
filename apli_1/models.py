@@ -1,6 +1,6 @@
 
 from django.db import models
-
+from django.core.validators import FileExtensionValidator
 # Create your models here.
 
 
@@ -10,7 +10,9 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=50)
     email = models.EmailField()
     clave = models.CharField(max_length=50)
-
+    foto = models.ImageField(upload_to="images/apli_1/static/apli_1", null=True)
+    
+    
     def __str__(self):
         return  (
             self.nombre

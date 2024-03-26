@@ -7,6 +7,7 @@ class Cliente_form(forms.Form):
     telefono_cliente = forms.CharField(max_length=50, label="telefono")
     email_cliente = forms.EmailField(label="email")
     clave_cliente = forms.CharField(max_length=50, label="clave")
+    foto_cliente = forms.ImageField(label="foto")
 
 class Usuario_form(forms.Form):
     nombre_usuario = forms.CharField(label="nombre")
