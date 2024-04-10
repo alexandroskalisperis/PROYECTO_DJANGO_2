@@ -3,8 +3,8 @@ from .models import Cliente, Mensaje, Respuesta, Estado, Estado_2, Estado_3
 # Register your models here.
 
 class Cliente_admin(admin.ModelAdmin):
-    list_display = ("nombre", "apellido", "telefono", "email", "clave","foto")
-    search_fields = ("nombre", "apellido", "telefono", "email", "clave","foto")
+    list_display = ("nombre", "apellido", "telefono", "email", "clave", "imagen")
+    search_fields = ("nombre", "apellido", "telefono", "email", "clave", "imagen")
     list_filter=("nombre","clave",)
 admin.site.register(Cliente, Cliente_admin)
 

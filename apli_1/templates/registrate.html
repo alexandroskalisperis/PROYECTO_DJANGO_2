@@ -7,13 +7,14 @@
         registrate y se parte de <br>
         Padre.net
     </p>
-    <form class="form_registrate" action="/chequear_registro/" method="post">{% csrf_token %}
+    <form class="form_registrate" action="/chequear_registro/" method="post" enctype="multipart/form-data">{% csrf_token %}
         <table>
             {{cliente_form}}
         </table>
+        
+        
         <input class="boton_form_registrate" type="submit" value="enviar">
     </form>
 </div>
 
-    
 {% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from django import forms 
+from .models import Cliente
 
 class Cliente_form(forms.Form):
     nombre_cliente = forms.CharField(max_length=50, label="nombre")
@@ -7,7 +7,10 @@ class Cliente_form(forms.Form):
     telefono_cliente = forms.CharField(max_length=50, label="telefono")
     email_cliente = forms.EmailField(label="email")
     clave_cliente = forms.CharField(max_length=50, label="clave")
-    foto_cliente = forms.ImageField(label="foto")
+    imagen_cliente = forms.ImageField(label="imagen")
+
+
+
 
 class Usuario_form(forms.Form):
     nombre_usuario = forms.CharField(label="nombre")
