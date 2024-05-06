@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +17,11 @@
     <title>{{titulo_pagina}}</title>
 </head>
 <body id="body_kaligram">
+    <!-- ================================ IMAGEN AVATAR ========================================== -->
     
     <!--=================== PRIMER DIV CONTENEDOR DE LOS TITULOS ==========================-->
     <div id="contenedor_titulos">
+        
         <h1 id="titulo_1">
             kaligram 
         </h1>
@@ -33,12 +36,13 @@
    
     {% block content %}
     <!-- ================== SEGUNDO DIV CONTENEDOR DE LOS MENSAJES ========================== -->
-    <div class="contenedor_mensajes">    
+    <div class="contenedor_mensajes">
         <p class="texto_1">
             Welcome {{cliente_nombre}}!!! <br>
             ingrese su mensaje
+            
         </p>
-        <form action="/mensajeria/" method="post" class="mensajeria">{% csrf_token %}  
+        <form action="/mensajeria/" method="post" class="mensajeria">{% csrf_token %} 
             <textarea name="textarea" id="" cols="80" rows="10"></textarea> <br>
             <input type="submit" value="grama" name="boton_like">
         </form>
@@ -87,10 +91,7 @@
                             
                         </ul>
                     </div>
-                </div>
-
-                
-                
+                </div>   
             </form>
             
             <hr style="color: white;">

@@ -46,42 +46,108 @@ def chequear_registro(request):
         email_cliente = request.POST["email_cliente"]
         clave_cliente = request.POST["clave_cliente"]
         imagen_cliente = request.FILES.get("imagen_cliente")
-        
     
-        
-    filtro_cliente = Cliente.objects.filter(
-        nombre = nombre_cliente,
-        apellido = apellido_cliente,
-        telefono = telefono_cliente,
-        email = email_cliente,
-        clave = clave_cliente,
-        imagen = imagen_cliente,
-        
-        
-    )
-    if filtro_cliente:
+    if Cliente.objects.filter(nombre=nombre_cliente,apellido=apellido_cliente,telefono=telefono_cliente,email=email_cliente,clave=clave_cliente):
         pestana = "Padre.net"
-
-        # REALICE UNA MODIFICACION EN EL CLIENTE POR USER
         cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
         if clave_cliente == cliente.clave:
             request.session["cliente_id"] = cliente.id
             request.session["cliente_nombre"] = cliente.nombre
-               
+            
         cliente_id = request.session["cliente_id"]
         cliente_nombre = request.session["cliente_nombre"]
-    
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
+        
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
-                "filtro_cliente": filtro_cliente,
+                "cliente_id": cliente_id,
+                "cliente_nombre": cliente_nombre,
+                "mensaje_error": mensaje_error,
+            }
+        )  
+    elif Cliente.objects.filter(nombre=nombre_cliente,apellido=apellido_cliente,clave=clave_cliente):
+        pestana = "Padre.net"
+        cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
+        if clave_cliente == cliente.clave:
+            request.session["cliente_id"] = cliente.id
+            request.session["cliente_nombre"] = cliente.nombre
+            
+        cliente_id = request.session["cliente_id"]
+        cliente_nombre = request.session["cliente_nombre"]
+        
+        return render(
+            request,
+            "esta_registrado.html",
+            {                
+                "pestana": pestana,
                 "cliente_id": cliente_id,
                 "cliente_nombre": cliente_nombre,
             }
+        ) 
+    elif Cliente.objects.filter(nombre=nombre_cliente,clave=clave_cliente):
+        pestana = "Padre.net"
+        cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
+        if clave_cliente == cliente.clave:
+            request.session["cliente_id"] = cliente.id
+            request.session["cliente_nombre"] = cliente.nombre
+            
+        cliente_id = request.session["cliente_id"]
+        cliente_nombre = request.session["cliente_nombre"]
+        
+        return render(
+            request,
+            "esta_registrado.html",
+            {                
+                "pestana": pestana,
+                "cliente_id": cliente_id,
+                "cliente_nombre": cliente_nombre,
+            }
+        ) 
+    elif Cliente.objects.filter(apellido=apellido_cliente,clave=clave_cliente):
+        pestana = "Padre.net"
+        return render(
+            request,
+            "esta_registrado.html",
+            {                
+                "pestana": pestana,
+                
+            }
+        ) 
+    elif Cliente.objects.filter(clave=clave_cliente):
+        pestana = "Padre.net"
+        return render(
+            request,
+            "esta_registrado.html",
+            {                
+                "pestana": pestana,
+            }
+        ) 
+    elif Cliente.objects.filter(nombre=nombre_cliente,apellido=apellido_cliente):
+        pestana = "Padre.net"
+        return render(
+            request,
+            "esta_registrado.html",
+            {                
+                "pestana": pestana,
+            }
         )
-     
+    elif Cliente.objects.filter(nombre=nombre_cliente):
+        pestana = "Padre.net"
+        return render(
+            request,
+            "esta_registrado.html",
+            {                
+                "pestana": pestana,
+            }
+        )
+    
     else:   
         pestana = "Padre.net"
         crear_cliente = Cliente.objects.create(
@@ -92,26 +158,17 @@ def chequear_registro(request):
             clave = clave_cliente,
             imagen = imagen_cliente,
         )
-        
-    
         cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
         if clave_cliente == cliente.clave:
             request.session["cliente_id"] = cliente.id
             request.session["cliente_nombre"] = cliente.nombre
-           
         cliente_id = request.session["cliente_id"]
-
         return render(
             request,
             "crear_cliente.html",
             {
-                "filtro_cliente": filtro_cliente,
                 "pestana": pestana,
                 "crear_cliente": crear_cliente,
-                
-                # "user": user,
-                # "mensaje_user": mensaje_user,
-            
             }
         )
 # ==================================== USUARIO ======================================
@@ -151,7 +208,7 @@ def chequear_usuario(request):
             
         cliente_id = request.session["cliente_id"]
         cliente_nombre = request.session["cliente_nombre"]
-      
+           
         
         return render(
             request,

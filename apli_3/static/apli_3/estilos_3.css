@@ -2,8 +2,12 @@
     background-attachment: fixed;
     background-image: linear-gradient(#725959, #00BDFF, #0027FF);
 } 
+/* =============================== IMAGEN AVATAR ========================================================= */
+
+
 /* ============================ EL PRIMER DIV CONTENEDOR DE LOS TITULOS ==================================== */
 #contenedor_titulos {
+    position: relative;
     width: 100%;
     height: auto;
     border: 1px solid white;
@@ -11,18 +15,21 @@
 }
 
 #titulo_1 {
+    position: relative;
     color: yellow;
     text-align: center;
     font-family: cursive;
     
 }
 #subtitulo_1 {
+    position: relative;
     color: yellow;
     text-align: center;
     font-family: cursive;
 }
 
 #tiempo {
+    position: relative;
     color: yellow;
     text-align: end;
     margin-right: 50px;
@@ -36,6 +43,7 @@
     height: auto;
    
 }
+
 .texto_1 {
     color: yellow;
     text-align: center;

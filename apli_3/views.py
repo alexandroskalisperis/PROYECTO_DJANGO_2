@@ -3,6 +3,7 @@ from django.views import View
 from datetime import datetime
 from apli_1.models import Cliente, Mensaje, Estado, Estado_2, Estado_3
 
+
 # Create your views here.
 
 # PROGRAMACION ORIENTADA A OBJETOS==================================
@@ -20,11 +21,13 @@ class Mi_vista(View):
         self.estado_2 = None
         self.estado_3 = None
         self.guardar_mensaje = None
+        
     # TODAS LAS VISTAS DENTRO DE LA CLASE =====================================
     def kaligram(self,request): 
         self.cliente_id = request.session["cliente_id"]
         self.cliente_nombre = request.session["cliente_nombre"]
         self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
+      
         return render(
             request,
             "kaligram.html",
@@ -34,6 +37,7 @@ class Mi_vista(View):
                 "cliente_id": self.cliente_id,
                 "cliente_nombre": self.cliente_nombre,
                 "mensajes": self.mensaje_all,
+                
                 
             }
         )

@@ -1,7 +1,6 @@
-
-
 from django.shortcuts import render
 from apli_1.models import Cliente
+
 
 # Create your views here.
 # ============================= PAGINA PRINCIPAL =============================
@@ -12,9 +11,6 @@ def pagina_principal(request):
     cliente_id = request.session["cliente_id"]
     cliente_nombre = request.session["cliente_nombre"] 
     request.user = cliente_nombre
-  
-    
-    
     
     
     return render(
@@ -27,13 +23,9 @@ def pagina_principal(request):
             "cliente_id": cliente_id,
             "cliente_nombre": cliente_nombre,
             "usuario": request.user,
-                       
+              
         }
     )
-
-
-
-
 # ================================================================================================================
 # =========================== CIENCIA Y TECNOLOGIA ===========================
 

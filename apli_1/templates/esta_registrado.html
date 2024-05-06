@@ -4,12 +4,13 @@
 {% block content %}
 <div id="div_form_registrate">
     <p class="parrafo_registrate">
-        Usted ya se encuentra registrado en <br>
-        nuestra base de datos, presione el boton <br>
-        para ingresar a nuestra <br>
-        Pagina Principal.
+        Los datos ingresados no son correctos, <br>
+        presione el boton y vuelva a intentarlo, gracias!!!
     </p>
-    <a class="boton_form_registrate" href="/pagina_principal/">Pagina Principal</a>
+    <p class="parrafo_registrate">
+        {{mensaje_error}}
+    </p>
+    <a class="boton_form_registrate" href="/registrate/">Volver</a>
     
 </div>
 {% endblock %}

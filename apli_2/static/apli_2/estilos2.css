@@ -15,6 +15,19 @@
     border: 1px solid white;
     box-shadow: inset rgb(109, 109, 214) 10px 10px 20px;
 }
+#div_imagen_avatar {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 1px solid white;
+    border-radius: 15%;
+    z-index: 5;
+}
+#imagen_avatar {
+    position: relative;
+    width: 30%;
+}
 .div_imagen_pag_principal {
     position: absolute;
     width: 750px;
@@ -119,7 +132,7 @@
         transform: rotate(1795deg);
     }
 }
-
+/* ========================================================================================================================= */
 #div_titulos_pag_principal {
     position: relative;
     width: 100%;
@@ -165,6 +178,7 @@
         margin-top: 0px;
     }
 }
+
 #reloj {
     position: relative;
     text-align: end;
