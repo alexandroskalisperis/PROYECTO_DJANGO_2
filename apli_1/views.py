@@ -49,13 +49,7 @@ def chequear_registro(request):
     
     if Cliente.objects.filter(nombre=nombre_cliente,apellido=apellido_cliente,telefono=telefono_cliente,email=email_cliente,clave=clave_cliente):
         pestana = "Padre.net"
-        cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
-        if clave_cliente == cliente.clave:
-            request.session["cliente_id"] = cliente.id
-            request.session["cliente_nombre"] = cliente.nombre
-            
-        cliente_id = request.session["cliente_id"]
-        cliente_nombre = request.session["cliente_nombre"]
+        
         mensaje_error = """sugerencia:
         _por lo general la repeticion del nombre
         con otros ya existentes, ocaciona este tipo 
@@ -67,89 +61,104 @@ def chequear_registro(request):
             "esta_registrado.html",
             {                
                 "pestana": pestana,
-                "cliente_id": cliente_id,
-                "cliente_nombre": cliente_nombre,
                 "mensaje_error": mensaje_error,
             }
         )  
     elif Cliente.objects.filter(nombre=nombre_cliente,apellido=apellido_cliente,clave=clave_cliente):
         pestana = "Padre.net"
-        cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
-        if clave_cliente == cliente.clave:
-            request.session["cliente_id"] = cliente.id
-            request.session["cliente_nombre"] = cliente.nombre
-            
-        cliente_id = request.session["cliente_id"]
-        cliente_nombre = request.session["cliente_nombre"]
-        
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
-                "cliente_id": cliente_id,
-                "cliente_nombre": cliente_nombre,
+                "mensaje_error": mensaje_error,
             }
         ) 
     elif Cliente.objects.filter(nombre=nombre_cliente,clave=clave_cliente):
         pestana = "Padre.net"
-        cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
-        if clave_cliente == cliente.clave:
-            request.session["cliente_id"] = cliente.id
-            request.session["cliente_nombre"] = cliente.nombre
-            
-        cliente_id = request.session["cliente_id"]
-        cliente_nombre = request.session["cliente_nombre"]
-        
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
-                "cliente_id": cliente_id,
-                "cliente_nombre": cliente_nombre,
+                "mensaje_error": mensaje_error,
             }
         ) 
     elif Cliente.objects.filter(apellido=apellido_cliente,clave=clave_cliente):
         pestana = "Padre.net"
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
+                "mensaje_error": mensaje_error,
                 
             }
         ) 
     elif Cliente.objects.filter(clave=clave_cliente):
         pestana = "Padre.net"
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
+                "mensaje_error": mensaje_error,
             }
         ) 
     elif Cliente.objects.filter(nombre=nombre_cliente,apellido=apellido_cliente):
         pestana = "Padre.net"
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
+                "mensaje_error": mensaje_error,
             }
         )
     elif Cliente.objects.filter(nombre=nombre_cliente):
         pestana = "Padre.net"
+        mensaje_error = """sugerencia:
+        _por lo general la repeticion del nombre
+        con otros ya existentes, ocaciona este tipo 
+        de problemas.
+        _modifique su clave."""
         return render(
             request,
             "esta_registrado.html",
             {                
                 "pestana": pestana,
+                "mensaje_error": mensaje_error,
             }
         )
     
     else:   
         pestana = "Padre.net"
+        usuario_form = Usuario_form
         crear_cliente = Cliente.objects.create(
             nombre = nombre_cliente,
             apellido = apellido_cliente,
@@ -158,17 +167,18 @@ def chequear_registro(request):
             clave = clave_cliente,
             imagen = imagen_cliente,
         )
-        cliente = Cliente.objects.get(nombre__exact = request.POST["nombre_cliente"])
-        if clave_cliente == cliente.clave:
-            request.session["cliente_id"] = cliente.id
-            request.session["cliente_nombre"] = cliente.nombre
-        cliente_id = request.session["cliente_id"]
+        crear_cliente.save()
+        mensaje_usuario = "ingrese su nombre y su codigo, por favor."
+
         return render(
             request,
-            "crear_cliente.html",
+            "usuario.html",
             {
                 "pestana": pestana,
                 "crear_cliente": crear_cliente,
+                "usuario_form": usuario_form,
+                "mensaje_usuario": mensaje_usuario,
+                    
             }
         )
 # ==================================== USUARIO ======================================
@@ -193,6 +203,7 @@ def chequear_usuario(request):
     filtro_usuario = Cliente.objects.filter(
         nombre = nombre_usuario,
         clave = clave_usuario,
+        
     )
     
     if filtro_usuario:
@@ -204,10 +215,15 @@ def chequear_usuario(request):
         if clave_usuario == cliente.clave:
             request.session["cliente_id"] = cliente.id
             request.session["cliente_nombre"] = cliente.nombre
+            request.session["cliente_imagen"] = cliente.imagen.url
+        
+            
             
             
         cliente_id = request.session["cliente_id"]
         cliente_nombre = request.session["cliente_nombre"]
+        cliente_imagen = request.session["cliente_imagen"]
+        
            
         
         return render(
@@ -221,6 +237,10 @@ def chequear_usuario(request):
                 "ultimo": ultimo,
                 "cliente_id": cliente_id,
                 "cliente_nombre": cliente_nombre,
+                "cliente_imagen": cliente_imagen,
+                
+                
+               
                 
             }
         )

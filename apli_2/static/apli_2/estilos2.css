@@ -15,19 +15,7 @@
     border: 1px solid white;
     box-shadow: inset rgb(109, 109, 214) 10px 10px 20px;
 }
-#div_imagen_avatar {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    border: 1px solid white;
-    border-radius: 15%;
-    z-index: 5;
-}
-#imagen_avatar {
-    position: relative;
-    width: 30%;
-}
+
 .div_imagen_pag_principal {
     position: absolute;
     width: 750px;
@@ -137,7 +125,7 @@
     position: relative;
     width: 100%;
     height: 200px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     text-align: center;
     color: transparent;
     font-family: cursive;
@@ -155,36 +143,39 @@
         text-shadow: black 2px 7px 10px;
     }
 }
-#simbolo_titulacion {
-    color: transparent;
-    text-shadow: none;
-    font-size: 25px;
-    margin-top: 0px;
-    animation: animacion4 10s ease backwards infinite;
+/* ============= DIVISION QUE CONTIENE EL TITULO, NOMBRE, Y FOTO EN LA PAGINA PRINCIPAL ========================== */
+#div_titulo_con_foto {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
-@keyframes animacion4 {
-    0% {
-        font-size: 25px;
-        margin-top: 0px;
-    }
-    50% {
-        font-size: 35px;
-        margin-top: 10px;
-        color: white;
-        text-shadow: black 2px 7px 10px;
-    }
-    100% {
-        font-size: 25px;
-        margin-top: 0px;
-    }
+
+#div_avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+    border: 1px solid white;
+    border-radius: 35%;
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+#imagen_avatar {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    border-radius: 35%;
+    
 }
 
 #reloj {
     position: relative;
-    text-align: end;
-    margin: 2%;
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     font-family: cursive;
     text-shadow: black 2px 2px 2px;
 }

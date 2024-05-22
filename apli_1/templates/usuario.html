@@ -3,9 +3,15 @@
 
 {% block content %}
 <div id="div_form_registrate">
+    {% if mensaje_usuario %}
+    <p class="parrafo_registrate">
+        {{mensaje_usuario}}
+    </p>
+    {% else %}
     <p class="parrafo_registrate">
         Ingrese su nombre y clave
     </p>
+    {% endif %}
     <form class="form_registrate" action="/chequear_usuario/" method="post">{% csrf_token %}
         <table>
             {{usuario_form}}

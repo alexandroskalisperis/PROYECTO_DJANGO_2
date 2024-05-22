@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from apli_1.models import Cliente
-
+from django.conf import settings
 
 # Create your views here.
 # ============================= PAGINA PRINCIPAL =============================
@@ -10,8 +10,9 @@ def pagina_principal(request):
     subtitulo = "Pagina Principal"
     cliente_id = request.session["cliente_id"]
     cliente_nombre = request.session["cliente_nombre"] 
+    cliente_imagen = request.session["cliente_imagen"]
     request.user = cliente_nombre
-    
+ 
     
     return render(
         request,
@@ -22,8 +23,9 @@ def pagina_principal(request):
             "subtitulo": subtitulo,
             "cliente_id": cliente_id,
             "cliente_nombre": cliente_nombre,
-            "usuario": request.user,
-              
+            "cliente_imagen": cliente_imagen,
+         
+            
         }
     )
 # ================================================================================================================

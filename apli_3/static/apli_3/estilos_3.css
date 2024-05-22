@@ -27,6 +27,25 @@
     text-align: center;
     font-family: cursive;
 }
+#div_avatar_3 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+    border: 1px solid white;
+    border-radius: 35%;
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+#imagen_avatar_3 {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    border-radius: 35%;
+    
+}
 
 #tiempo {
     position: relative;

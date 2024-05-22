@@ -9,8 +9,8 @@ class Cliente_admin(admin.ModelAdmin):
 admin.site.register(Cliente, Cliente_admin)
 
 class Mensaje_admin(admin.ModelAdmin):
-    list_display = ("mensaje_cliente", "fecha_mensaje", "nombre_cliente","perro1_like","perro2_dislike","perro3_aburrido")
-    search_fields = ("mensaje_cliente", "fecha_mensaje", "nombre_cliente","perro1_like","perro2_dislike","perro3_aburrido")
+    list_display = ("mensaje_cliente", "fecha_mensaje", "nombre_cliente","perro1_like","perro2_dislike","perro3_aburrido","imagen_cliente_1")
+    search_fields = ("mensaje_cliente", "fecha_mensaje", "nombre_cliente","perro1_like","perro2_dislike","perro3_aburrido","imagen_cliente_1")
     list_filter = ("mensaje_cliente", "nombre_cliente", "perro1_like","perro2_dislike","perro3_aburrido",)
 admin.site.register(Mensaje, Mensaje_admin)
 

@@ -34,20 +34,35 @@
         </div>
         <!-- ======================================================================================================= -->
         <div id="div_titulos_pag_principal">
-            <h1>
-                {{titulo}}
-            </h1>
-            <h3>
-                {{subtitulo}} <span style="color: violet;text-shadow: yellow 1px 1px 1px;">&#x2728;&#xfe0e;</span>
-                {{cliente_nombre}} <br>
-                {{mensaje_user}}<br>
-            </h3>
-            <h4 id="simbolo_titulacion">
-                &#x2766;
-            </h4>
+            
+
+            
+
+            <div id="div_titulo_con_foto">
+                <h1>
+                    {{titulo}} 
+
+                </h1>
+                
+                <h3>
+                    {{subtitulo}} <span style="color: violet;text-shadow: yellow 1px 1px 1px;">&#x2728;&#xfe0e;</span>{{cliente_nombre}} 
+                </h3>
+
+                <div id="div_avatar">
+                    
+                    <img id="imagen_avatar" src="{{cliente_imagen}}" alt="imagen del cliente">
+                    
+                </div>
+                
+                <div id="reloj"></div>
+            </div>
+            
+
+
+            
         </div>
         <!-- ================================================================================================== ======-->
-        <div id="reloj"></div>
+       
     </div>
     <!-- ============================ NAVEGACION =============================================== -->
     <div id="div_navegacion">

@@ -25,6 +25,7 @@ class Mensaje(models.Model):
     perro1_like = models.IntegerField(default=0, null=True)
     perro2_dislike = models.IntegerField(default=0, null=True)
     perro3_aburrido = models.IntegerField(default=0, null=True)
+    imagen_cliente_1 = models.CharField(max_length=50)
     
 
     def __str__(self):

@@ -13,6 +13,7 @@ class Mi_vista(View):
         self.tiempo = datetime.now()
         self.cliente_id = None
         self.cliente_nombre = None
+        self.cliente_imagen = None
         self.cliente_all = Cliente.objects.all()
         self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
         self.textarea = None
@@ -26,8 +27,9 @@ class Mi_vista(View):
     def kaligram(self,request): 
         self.cliente_id = request.session["cliente_id"]
         self.cliente_nombre = request.session["cliente_nombre"]
+        self.cliente_imagen = request.session["cliente_imagen"]
         self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
-      
+        
         return render(
             request,
             "kaligram.html",
@@ -36,7 +38,9 @@ class Mi_vista(View):
                 "tiempo": self.tiempo,    
                 "cliente_id": self.cliente_id,
                 "cliente_nombre": self.cliente_nombre,
+                "cliente_imagen": self.cliente_imagen,
                 "mensajes": self.mensaje_all,
+                
                 
                 
             }
@@ -45,10 +49,13 @@ class Mi_vista(View):
         if request.method == "POST":
             self.textarea = request.POST["textarea"]
             self.cliente_nombre = request.session["cliente_nombre"]
+            self.cliente_imagen = request.session["cliente_imagen"]
+            
             
             self.guardar_mensaje = Mensaje(
                 mensaje_cliente = self.textarea,
                 nombre_cliente = Cliente.objects.get(nombre = self.cliente_nombre),
+                imagen_cliente_1 = self.cliente_imagen,
             )
             self.guardar_mensaje.save() 
             self.estado = Estado.objects.create(
@@ -84,10 +91,13 @@ class Mi_vista(View):
                     "textarea": self.textarea,
                     "cliente_nombre": self.cliente_nombre,
                     "guardar_mensaje": self.guardar_mensaje,
+                    "cliente_imagen": self.cliente_imagen,
+                    
                 }
             ) 
         
     def like(self, request):
+        self.cliente_imagen = request.session["cliente_imagen"]
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]
         self.mensaje = Mensaje.objects.get(id = self.mensaje_id)
@@ -143,11 +153,13 @@ class Mi_vista(View):
                 "mensajes": self.mensaje_all,
                 "textarea": self.textarea,
                 "cliente_nombre": self.cliente_nombre,
-                "guardar_mensaje": self.guardar_mensaje,   
+                "guardar_mensaje": self.guardar_mensaje, 
+                "cliente_imagen": self.cliente_imagen,
             }
         )
     
     def dislike(self, request):
+        self.cliente_imagen = request.session["cliente_imagen"]
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]
         self.mensaje = Mensaje.objects.get(id = self.mensaje_id)
@@ -196,10 +208,11 @@ class Mi_vista(View):
                 "textarea": self.textarea,
                 "cliente_nombre": self.cliente_nombre,
                 "guardar_mensaje": self.guardar_mensaje,
-                
+                "cliente_imagen": self.cliente_imagen,
             }
         )    
     def boring(self, request):
+        self.cliente_imagen = request.session["cliente_imagen"]
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]
         self.mensaje = Mensaje.objects.get(id = self.mensaje_id)
@@ -247,6 +260,7 @@ class Mi_vista(View):
                 "textarea": self.textarea,
                 "cliente_nombre": self.cliente_nombre,
                 "guardar_mensaje": self.guardar_mensaje,
+                "cliente_imagen": self.cliente_imagen,
                 
             }
         )
