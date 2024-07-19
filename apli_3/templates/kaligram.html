@@ -17,102 +17,101 @@
     <title>{{titulo_pagina}}</title>
 </head>
 <body id="body_kaligram">
-    <!-- ================================ IMAGEN AVATAR ========================================== -->
-    
     <!--=================== PRIMER DIV CONTENEDOR DE LOS TITULOS ==========================-->
-    <div id="contenedor_titulos">
-        
-        <h1 id="titulo_1">
-            kaligram 
-        </h1>
-        <h2 id="subtitulo_1">
-            muro interactivo
-        </h2>
-        <div id="div_avatar_3">
-                    
-            <img id="imagen_avatar_3" src="{{cliente_imagen}}" alt="imagen del cliente">
-            
-        </div>
-        <h3 id="tiempo">
+    {% block div %}
+    <div id="contenedor_logo">
+        <img id="imagen_jupiter" src="{% static 'apli_3/images/jupiter.png' %}" alt="">
+        <img id="imagen_kaligram" src="{% static 'apli_3/images/kaligram.png' %}" alt="">
+        <img id="imagen_tierra" src="{% static 'apli_3/images/tierra.png' %}" alt="">
+        <p id="tiempo">
             {{tiempo}}
-        </h3>
+        </p>
     </div>
-    
+    {% endblock %}
    
     {% block content %}
     <!-- ================== SEGUNDO DIV CONTENEDOR DE LOS MENSAJES ========================== -->
     <div class="contenedor_mensajes">
-        <p class="texto_1">
-            Welcome {{cliente_nombre}}!!! <br>
-            ingrese su mensaje
+        
+        <div id="div_mensaje_no_enviado">
+            <div id="div_avatar_3">     
+                <img id="imagen_avatar_3" src="{{cliente_imagen}}" alt="imagen del cliente">
+            </div>
+            <p class="texto_1">
+                {{cliente_nombre}}!!!
+            </p>
             
-        </p>
-        <form action="/mensajeria/" method="post" class="mensajeria">{% csrf_token %} 
-            <textarea name="textarea" id="" cols="80" rows="10"></textarea> <br>
-            <input type="submit" value="grama" name="boton_like">
-        </form>
+            
+            <form action="/mensajeria/" method="post" class="mensajeria">{% csrf_token %} 
+                <textarea name="textarea" id="" cols="80" rows="10"></textarea> <br>
+                <input type="submit" value="grama" name="boton_grama">
+            </form> 
+            <div id="div_boton_salir">
+                <a href="/pagina_principal/" class="boton_salir">salir</a>
+            </div>
+        </div>
+        
+        
+        
        <hr style="color: white;"> 
+        
 
 
     <!-- ================== LISTA DE MENSAJES DE LA BASE DE DATOS / ENVIO DE LIKE DISLIKE Y BORING =============================== -->
 
         {% for mensaje in mensajes %}
         <!-- DIV GENERAL DE LOS MENSAJES ENVIADOS -->
-        <div id="div_mensaje_enviado">
-            <form method="post">{% csrf_token %}
-                <div id="div_izquierda_botones">
-                    <ul>
-                        <li class="class_div_izquierdo"><input type="submit" value="share" class="botones_izquierdos"></li>
-                        <li class="class_div_izquierdo"><input type="submit" value="save" class="botones_izquierdos"></li>
-                        <li class="class_div_izquierdo"><input type="submit" value="notifications" class="botones_izquierdos"></li>
+        
+            <form id="formulario" method="post">{% csrf_token %}
+                <div class="div_consecutivos_mensajes">
+                    <ul id="lista_botones_izquierdos">
+                        <li><a style="color:white;" href="{% url 'respuesta' valor='answer' %}" value="answer">answer<a/></li>
+                        <li><a style="color:white;">save</a></li>
+                        <li><a style="color:white;">notifications</a></li>
                     </ul>
                 </div>
-
+                
                 <!-- DIV CON EL TEXTAREA Y LOS BOTONES DE LIKES -->
-                <div id="div_mensaje_interno">
-                    <div style="display: inline-block;">
-                        <p class="texto_2">
-                            {{mensaje.nombre_cliente}} <a href="/pagina_principal/" style="color: white;font-size: large;">salir</a>
+                <div class="div_consecutivos_mensajes">
+                    <div id="div_central_mensaje">
+                        <p class="texto_3">
+                            {{mensaje.nombre_cliente}} 
                         </p> 
-
-                        
-                        <div id="div_avatar_3">
-                        
+                        <div id="div_avatar_4">                      
                             <img id="imagen_avatar_3" src="{{mensaje.imagen_cliente_1}}" alt="imagen del cliente">
-                        
                         </div>
-                        
-                        
-
-
-
-                        <p class="texto_2">
-                                {{mensaje.id}}
+                        <p class="texto_3">
+                            {{mensaje.id}}
                         </p>
                         <input type="hidden" name="mensaje_id" value="{{mensaje.id}}">
                         <textarea name="textarea_2" id="textarea" cols="30" rows="10" readonly>{{mensaje.mensaje_cliente}}</textarea> <br>
                         
-
-
                         <input type="submit" value="like" formaction="/like/" name="boton_like" id="boton_perro_like">
                         <input type="submit" value="dislike" formaction="/dislike/" name="boton_like" id="boton_perro_dislike">
                         <input type="submit" value="boring" formaction="/boring/" name="boton_like" id="boton_perro_aburrido"> 
+                    </div>                   
+                </div> 
+                <!-- DIV CON LAS FOTOS DE LOS PERROS LIKES. -->
+                <div class="div_consecutivos_mensajes">
+                    <div id="div_perros">
+                        <div class="div_relativo">
+                            <img id="imagen_perro_1" id="imagen_like" src="{% static 'apli_3/images/perro1.png' %}"> 
+                            <p id="numero_1">{{mensaje.perro1_like}}</p>
+                        </div>
+                        <div class="div_relativo">
+                            <img id="imagen_perro_2" src="{% static 'apli_3/images/perro2.png' %}">
+                            <p id="numero_2">{{mensaje.perro2_dislike}}</p>
+                        </div>
+                        <div class="div_relativo">
+                            <img id="imagen_perro_3" src="{% static 'apli_3/images/perro3.png' %}">
+                            <p id="numero_3">{{mensaje.perro3_aburrido}}</p>
+                        </div>    
                     </div>
-                         
-                    <!-- DIV CON LAS FOTOS DE LOS PERROS LIKES. -->
-                    <div id="aside_likes">
-                        <ul> 
-                            <li class="lista_fotos_likes"><img class="class_imagen" id="imagen_like" src="{% static 'apli_3/images/perro1.png' %}"><span class="span_numero_likes">{{mensaje.perro1_like}}</span></li>
-                            <li class="lista_fotos_likes"><img class="class_imagen" src="{% static 'apli_3/images/perro2.png' %}"><span class="span_numero_likes">{{mensaje.perro2_dislike}}</span></li>
-                            <li class="lista_fotos_likes"><img class="class_imagen" src="{% static 'apli_3/images/perro3.png' %}"><span class="span_numero_likes">{{mensaje.perro3_aburrido}}</span></li>
-                            
-                        </ul>
-                    </div>
-                </div>   
+                </div>  
             </form>
             
             <hr style="color: white;">
-        </div>
+       
         {% endfor %}
 
        

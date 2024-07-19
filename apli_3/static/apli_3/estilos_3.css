@@ -1,43 +1,73 @@
 #body_kaligram {
     background-attachment: fixed;
-    background-image: linear-gradient(#725959, #00BDFF, #0027FF);
+    background-image: linear-gradient(#06132f, #5ca6c1, #02199e);
 } 
-/* =============================== IMAGEN AVATAR ========================================================= */
-
-
 /* ============================ EL PRIMER DIV CONTENEDOR DE LOS TITULOS ==================================== */
-#contenedor_titulos {
+
+#contenedor_logo {
+    position: absolute;
+    background-color: rgb(14, 2, 34);
+    width: 130px;
+    height: 110px;
+    border: 1px solid rgb(31, 131, 203);
+    border-radius: 45% 22% 0%;
+    box-shadow: 10px 10px 10px black;
+    margin-left: 20px;
+}
+#imagen_jupiter {
+    position: absolute;
+    width: 75%;
+    left: 20px;
+    filter: drop-shadow(10px 10px 7px rgb(6, 115, 119));
+    z-index: 0;
+}
+#imagen_kaligram {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: -20px;
+    top: 30px;
+    z-index: 3;
+    transform: skew(25deg,-15deg);
+    filter: drop-shadow(1px 1px rgb(206, 247, 168));
+}
+#imagen_tierra {
+    position: absolute;
+    width: 55%;
+    z-index: 1;
+    left: 80px;
+    top: 80px;
+    filter: drop-shadow(2px 2px 4px white);
+}
+#tiempo {
     position: relative;
-    width: 100%;
-    height: auto;
-    border: 1px solid white;
-    
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    top: 110px;
+    z-index: 3;
 }
 
-#titulo_1 {
+/* ==================================================== */
+#div_mensaje_no_enviado {
     position: relative;
-    color: yellow;
-    text-align: center;
-    font-family: cursive;
-    
-}
-#subtitulo_1 {
-    position: relative;
-    color: yellow;
-    text-align: center;
-    font-family: cursive;
-}
-#div_avatar_3 {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    z-index: 5;
-    border: 1px solid white;
-    border-radius: 35%;
-    background-color: black;
+    width: 60%;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-top: 30px;
+}
+#div_avatar_3 {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 0px;
+    z-index: 5;
+    border: 1px solid rgb(18, 62, 181);
+    border-radius: 35%;
+    background-color: black;
+
+    
 }
 #imagen_avatar_3 {
     position: relative;
@@ -47,20 +77,13 @@
     
 }
 
-#tiempo {
-    position: relative;
-    color: yellow;
-    text-align: end;
-    margin-right: 50px;
-}
+
 /* ================================== SEGUNDO DIV CONTENEDOR DE LOS MENSAJES ================================= */
 .contenedor_mensajes {
     position: relative;
     text-align: center;
-    border: 1px solid white;
     width: 100%;
     height: auto;
-   
 }
 
 .texto_1 {
@@ -89,6 +112,7 @@ textarea[name="textarea"] {
     font-size: 17px;
     font-family: cursive;
     box-shadow: black 15px 15px 15px;
+    margin-top: 10px;
 }
 textarea[name="textarea_2"] {
     resize: none;
@@ -98,6 +122,54 @@ textarea[name="textarea_2"] {
     font-family: cursive;
     box-shadow: black 15px 15px 15px;
 }
+input[name="boton_grama"] {
+    width: 900px;
+    height: 50px;
+    background-color: #0027FF;
+    color: white;
+    box-shadow: black 15px 15px 15px;
+    font-size: 16px;
+    font-family: cursive;
+    border: 1px solid white;
+    border-radius: 10px 21px 10px 21px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+input[name="boton_grama"]:hover {
+    color: rgb(0, 0, 0);
+    background-color: aqua;
+    border-radius: 21px 10px 21px 10px;
+    transition: 0.3s ease;
+}
+#div_boton_salir {
+    width: 700px;
+    height: 35px;
+    background-color: #0027FF;
+    color: white;
+    box-shadow: black 15px 15px 15px;
+    border: 1px solid white;
+    border-radius: 10px 21px 10px 21px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+#div_boton_salir:hover {
+    background-color: aqua;
+    
+}
+.boton_salir {
+    position: relative;
+    color: white;
+    padding: 9px 300px;
+    text-decoration: none;
+    font-size: 18px;
+    top: 5px;
+}
+.boton_salir:hover {
+    color: black;
+}
+
+
 input[name="boton_like"] {
     width: 100px;
     height: 50px;
@@ -109,7 +181,7 @@ input[name="boton_like"] {
     border: 1px solid white;
     border-radius: 10px 21px 10px 21px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 input[name="boton_like"]:hover {
     color: rgb(0, 0, 0);
@@ -120,77 +192,101 @@ input[name="boton_like"]:hover {
 }
 
 /* ================= DIV MENSAJES ENVIADOS ================================================= */
-#div_mensaje_enviado {
-    position: relative;
-    
-   
-}
 
-
-#div_mensaje_interno {
+#formulario {
     position: relative;
-    margin-left: 30%;
-    margin-right: 30%;
+    width: 100%;
+    height: auto;
 }
-#div_izquierda_botones {
+.div_consecutivos_mensajes {
+    display:inline-block;
+    width: 30%;
+    height: 500px;
+}
+/* ==================================== */
+#lista_botones_izquierdos {
     position: absolute;
-    margin-left: 28%;
-    margin-top: 8%;
+    width: 200px;
+    list-style-type: none;
+    top: 200px;
+    left: 200px;
     
 }
 
-.class_div_izquierdo {
-    list-style-type: none;
+/* ============================================= */
+#div_central_mensaje {
+    position: absolute;
+    width: 30%;
+    height: 500px;
+}
+.texto_3 {
+    color: yellow;
+    text-align: center;
+    font-family: cursive;
+    font-size: 18px;
+    text-shadow: black 5px 5px 5px;
+}
+#div_avatar_4 {
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+    border: 1px solid rgb(24, 22, 107);
+    border-radius: 35%;
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10px;
 }
+/* ==================================================== */
 
-.botones_izquierdos {
-    width: 110px;
-    height: 50px;
-    background-color: #0027FF;
-    color: white;
-    box-shadow: black 15px 15px 15px;
-    font-size: 16px;
-    font-family: cursive;
-    border: 1px solid white;
-    border-radius: 10px 21px 10px 21px;
-
-}
-
-
-#aside_likes {
+#div_perros {
     position: absolute;
-    display: inline-block;
-    margin-top: 100px;
-    color: white;
-    
-    
+    margin-top: 10%;
+    width: 30%;
+    height: 300px;
 }
-.lista_fotos_likes {
-    color: white;
-    list-style-type: none;
-    margin-bottom: 15px;
-    
-
-}
-.class_imagen {
-    width: 45%;
-    border-radius: 50%;
-    
-}
-.class_imagen:hover {
-    transform: rotate(20deg);
-    box-shadow: 0px 0px 20px yellow;
-    transition: 0.5s ease;
-    
+.div_relativo {
+    position: relative;
+    width: 200px;
+    height: 100px;
 }
 
+#imagen_perro_1 {
+    position: absolute;
+    width: 35%;
+    left: 0%;
 
-.span_numero_likes {
+    
+}
+#imagen_perro_2 {
+    position: absolute;
+    width: 35%;
+    left: 0%;
+}
+#imagen_perro_3 {
+    position: absolute;
+    width: 35%;
+    left: 0%;
+}
+#numero_1 {
+    position: absolute;
     color: yellow;
-    font-family: cursive;
-    margin-left: 10px;
+    left: 100px;
+
 }
+#numero_2 {
+    position: absolute;
+    color: yellow;
+    left: 100px;
+
+}
+#numero_3 {
+    position: absolute;
+    color: yellow;
+    left: 100px;
+
+}
+
 
 
 /* ================================== FOOTER ================================================= */

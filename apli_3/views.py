@@ -95,6 +95,21 @@ class Mi_vista(View):
                     
                 }
             ) 
+    def respuesta(self, request, valor):
+        self.valor = valor
+        self.cliente_nombre = request.session["cliente_nombre"]
+        self.cliente_imagen = request.session["cliente_imagen"]
+        return render(
+            request,
+            "respuesta.html", 
+            {
+                "titulo_pagina": self.titulo_pagina,
+                "tiempo": self.tiempo,
+                "valor": self.valor,
+                "cliente_nombre": self.cliente_nombre,
+                "cliente_imagen": self.cliente_imagen,
+            }
+        )
         
     def like(self, request):
         self.cliente_imagen = request.session["cliente_imagen"]

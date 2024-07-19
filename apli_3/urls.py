@@ -6,6 +6,7 @@ mi_vista = Mi_vista()
 urlpatterns = [
     path("kaligram/", mi_vista.kaligram, name="kaligram"),
     path("mensajeria/", mi_vista.mensajeria, name="mensajeria"), 
+    path("respuesta/<str:valor>/", mi_vista.respuesta, name="respuesta"),
     path("like/", mi_vista.like, name="like"),
     path("dislike/", mi_vista.dislike, name="dislike"),
     path("boring/", mi_vista.boring, name="boring"),

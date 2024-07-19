@@ -33,20 +33,6 @@ class Mensaje(models.Model):
             self.mensaje_cliente, " ", self.nombre_cliente,
         )
 
-class Respuesta(models.Model):
-    autor = models.CharField(max_length=50)
-    cliente = models.CharField(max_length=50)
-    mensaje_respuesta = models.TextField(null=True)
-    fecha_respuesta = models.DateTimeField(auto_now_add=False, auto_now=True, null=True) 
-    like = models.IntegerField(default=0, null=True)
-    dislike = models.IntegerField(default=0, null=True)
-    aburrido = models.IntegerField(default=0, null=True)
-
-    def __str__(self):
-        return "%s %s %s" %(
-            self.autor, " ", self.mensaje_respuesta,
-        )
-    
 class Estado(models.Model):
     cliente_estado = models.CharField(max_length=50, null=True)
     mensaje_foraneo = models.ForeignKey("Mensaje", on_delete=models.CASCADE)
