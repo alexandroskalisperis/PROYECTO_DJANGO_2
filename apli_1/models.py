@@ -26,8 +26,8 @@ class Mensaje(models.Model):
     perro2_dislike = models.IntegerField(default=0, null=True)
     perro3_aburrido = models.IntegerField(default=0, null=True)
     imagen_cliente_1 = models.CharField(max_length=50)
+    mensaje_padre = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE, related_name="respuestas")
     
-
     def __str__(self):
         return "%s %s %s" %(
             self.mensaje_cliente, " ", self.nombre_cliente,
@@ -42,7 +42,6 @@ class Estado(models.Model):
         return "%s %s %s %s %s" %(
             self.cliente_estado," ", self.mensaje_foraneo," ", self.estado,
         )
-    
 
 class Estado_2(models.Model):
     cliente_estado2 = models.CharField(max_length=50, null=True)

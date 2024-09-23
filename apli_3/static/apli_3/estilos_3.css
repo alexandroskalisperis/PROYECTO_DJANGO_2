@@ -168,6 +168,32 @@ input[name="boton_grama"]:hover {
 .boton_salir:hover {
     color: black;
 }
+#div_boton_answer {
+    width: 400px;
+    height: 35px;
+    background-color: #0027FF;
+    color: white;
+    box-shadow: black 15px 15px 15px;
+    border: 1px solid white;
+    border-radius: 10px 21px 10px 21px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#div_boton_answer:hover {
+    background-color: aqua;
+}
+.boton_answer {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    top: 5px;
+    padding: 6px 170px;
+}
+.boton_answer:hover {
+    color: black;
+}
+
 
 
 input[name="boton_like"] {
@@ -201,7 +227,7 @@ input[name="boton_like"]:hover {
 .div_consecutivos_mensajes {
     display:inline-block;
     width: 30%;
-    height: 500px;
+    height: 600px;
 }
 /* ==================================== */
 #lista_botones_izquierdos {
@@ -286,7 +312,23 @@ input[name="boton_like"]:hover {
     left: 100px;
 
 }
-
+/* ================================ RESPUESTA.HTML ========================================================= */
+#respuesta_div_likes_1 {
+    position: absolute;
+    width: 120px;
+    height: 200px;
+    border: 1px solid white;
+    right: 0px;
+    top: 100px;
+}
+#respuesta_div_likes_2 {
+    position: absolute;
+    width: 120px;
+    height: 270px;
+    border: 1px solid white;
+    right: -150px;
+    top: 70px;
+}
 
 
 /* ================================== FOOTER ================================================= */

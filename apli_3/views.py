@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from datetime import datetime
 from apli_1.models import Cliente, Mensaje, Estado, Estado_2, Estado_3
@@ -23,6 +23,7 @@ class Mi_vista(View):
         self.estado_3 = None
         self.guardar_mensaje = None
         
+        
     # TODAS LAS VISTAS DENTRO DE LA CLASE =====================================
     def kaligram(self,request): 
         self.cliente_id = request.session["cliente_id"]
@@ -40,9 +41,6 @@ class Mi_vista(View):
                 "cliente_nombre": self.cliente_nombre,
                 "cliente_imagen": self.cliente_imagen,
                 "mensajes": self.mensaje_all,
-                
-                
-                
             }
         )
     def mensajeria(self, request):
@@ -56,6 +54,7 @@ class Mi_vista(View):
                 mensaje_cliente = self.textarea,
                 nombre_cliente = Cliente.objects.get(nombre = self.cliente_nombre),
                 imagen_cliente_1 = self.cliente_imagen,
+                
             )
             self.guardar_mensaje.save() 
             self.estado = Estado.objects.create(
@@ -95,23 +94,85 @@ class Mi_vista(View):
                     
                 }
             ) 
-    def respuesta(self, request, valor):
-        self.valor = valor
+
+    def respuesta(self, request, mensaje_id):
+        self.mensaje_id = get_object_or_404(Mensaje, id=mensaje_id)
         self.cliente_nombre = request.session["cliente_nombre"]
         self.cliente_imagen = request.session["cliente_imagen"]
+        self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
         return render(
             request,
-            "respuesta.html", 
+            "respuesta.html",
             {
-                "titulo_pagina": self.titulo_pagina,
+                "titulo_pagina":self.titulo_pagina,
                 "tiempo": self.tiempo,
-                "valor": self.valor,
+                "cliente_id": self.cliente_id,
                 "cliente_nombre": self.cliente_nombre,
                 "cliente_imagen": self.cliente_imagen,
+                "mensaje_id": self.mensaje_id,       
+                "cliente_nombre": self.cliente_nombre,
+                "cliente_imagen": self.cliente_imagen,
+                "mensajes": self.mensaje_all,               
             }
         )
-        
+    
+    def procesar_respuesta(self, request):
+        if request.method == "POST":
+            self.textarea = request.POST["textarea"]
+            self.cliente_nombre = request.session["cliente_nombre"]
+            self.cliente_imagen = request.session["cliente_imagen"]
+      
+            
+            self.nueva_respuesta = Mensaje.objects.create(
+                mensaje_cliente = self.textarea,
+                nombre_cliente = Cliente.objects.get(nombre = self.cliente_nombre),
+                imagen_cliente_1 = self.cliente_imagen,
+                mensaje_padre = self.mensaje_id,
+                
+            )
+            self.nueva_respuesta.save()
+            self.estado = Estado.objects.create(
+                cliente_estado = None,
+                mensaje_foraneo = Mensaje.objects.get(mensaje_cliente = self.textarea),
+                estado = None
+            )
+            self.estado.save()
+            
+            self.estado_2 = Estado_2.objects.create(
+                cliente_estado2 = None,
+                mensaje_foraneo_2 = Mensaje.objects.get(mensaje_cliente = self.textarea),
+                estado2 = None
+            )
+            self.estado_2.save()
+
+            self.estado_3 = Estado_3.objects.create(
+                cliente_estado3 = None,
+                mensaje_foraneo_3 = Mensaje.objects.get(mensaje_cliente = self.textarea),
+                estado3 = None
+            )
+            self.estado_3.save()
+            self.mensaje_all = Mensaje.objects.order_by("-mensaje_padre")
+
+            return render(
+                request, 
+                "respuesta.html",
+                {
+                    "titulo_pagina":self.titulo_pagina,
+                    "tiempo": self.tiempo,
+                    "cliente_id": self.cliente_id,
+                    "cliente_nombre": self.cliente_nombre,
+                    "cliente_imagen": self.cliente_imagen,
+                    "mensaje_id": self.mensaje_id,       
+                    "nueva_respuesta": self.nueva_respuesta,
+                    "mensajes": self.mensaje_all.order_by("-fecha_mensaje"),  
+                    "textarea": self.textarea,
+                    
+                }
+            )
+ 
     def like(self, request):
+        referer_url = request.META.get('HTTP_REFERER', '/')
+
         self.cliente_imagen = request.session["cliente_imagen"]
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]
@@ -158,6 +219,7 @@ class Mi_vista(View):
             self.mensaje.save()
             
         self.mensaje_all = Mensaje.objects.order_by("-fecha_mensaje")
+        
         return render(
             request,
             "kaligram.html",

@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="{% static 'apli_3/images/kali celular 001.ico' %}" type="image/x-icon">
 
     <title>{{titulo_pagina}}</title>
+    
 </head>
 <body id="body_kaligram">
     <!--=================== PRIMER DIV CONTENEDOR DE LOS TITULOS ==========================-->
@@ -32,7 +33,6 @@
     {% block content %}
     <!-- ================== SEGUNDO DIV CONTENEDOR DE LOS MENSAJES ========================== -->
     <div class="contenedor_mensajes">
-        
         <div id="div_mensaje_no_enviado">
             <div id="div_avatar_3">     
                 <img id="imagen_avatar_3" src="{{cliente_imagen}}" alt="imagen del cliente">
@@ -40,14 +40,12 @@
             <p class="texto_1">
                 {{cliente_nombre}}!!!
             </p>
-            
-            
             <form action="/mensajeria/" method="post" class="mensajeria">{% csrf_token %} 
                 <textarea name="textarea" id="" cols="80" rows="10"></textarea> <br>
                 <input type="submit" value="grama" name="boton_grama">
             </form> 
             <div id="div_boton_salir">
-                <a href="/pagina_principal/" class="boton_salir">salir</a>
+                <a href="/pagina_principal/" class="boton_salir">get out</a>
             </div>
         </div>
         
@@ -65,7 +63,7 @@
             <form id="formulario" method="post">{% csrf_token %}
                 <div class="div_consecutivos_mensajes">
                     <ul id="lista_botones_izquierdos">
-                        <li><a style="color:white;" href="{% url 'respuesta' valor='answer' %}" value="answer">answer<a/></li>
+                        <li><a style="color:white;" value="answer">answer<a/></li>
                         <li><a style="color:white;">save</a></li>
                         <li><a style="color:white;">notifications</a></li>
                     </ul>
@@ -89,6 +87,10 @@
                         <input type="submit" value="like" formaction="/like/" name="boton_like" id="boton_perro_like">
                         <input type="submit" value="dislike" formaction="/dislike/" name="boton_like" id="boton_perro_dislike">
                         <input type="submit" value="boring" formaction="/boring/" name="boton_like" id="boton_perro_aburrido"> 
+                        <div id="div_boton_answer">
+                            <a class="boton_answer" href="{% url 'respuesta' mensaje_id=mensaje.id %}" value="answer">answer<a/>
+                        </div>
+                        
                     </div>                   
                 </div> 
                 <!-- DIV CON LAS FOTOS DE LOS PERROS LIKES. -->

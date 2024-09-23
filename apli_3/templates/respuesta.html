@@ -1,16 +1,130 @@
-{% extends 'kaligram.html' %}
+{% extends "kaligram.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'apli_3/estilos_3.css' %}">
-    <script src="{% static 'apli_3/estilos3.js' %}"></script>
-    <title>Document</title>
-</head>
-<body>
+
+{% block content %}
+<div class="contenedor_mensajes">
+    <div id="div_mensaje_no_enviado">
+        <div id="div_avatar_3">     
+            <img id="imagen_avatar_3" src="{{mensaje_id.imagen_cliente_1}}" alt="imagen del cliente">
+        </div>
+        <p class="texto_1">
+            {{mensaje_id.nombre_cliente}}!!! <br>
+            id:{{mensaje_id.id}}
+        </p>
+        <form id="formulario" method="post">{% csrf_token %}
+            
+            <div id="respuesta_div_likes_1">
+                <input type="submit" value="like" formaction="/like/" name="boton_like" id="boton_perro_like">
+                <input type="submit" value="dislike" formaction="/dislike/" name="boton_like" id="boton_perro_dislike">
+                <input type="submit" value="boring" formaction="/boring/" name="boton_like" id="boton_perro_aburrido"> 
+            </div>
+            <div id="respuesta_div_likes_2">
+                <div id="div_perros">
+                    <div class="div_relativo">
+                        <img id="imagen_perro_1" id="imagen_like" src="{% static 'apli_3/images/perro1.png' %}"> 
+                        <p id="numero_1">{{mensaje_id.perro1_like}}</p>
+                    </div>
+                    <div class="div_relativo">
+                        <img id="imagen_perro_2" src="{% static 'apli_3/images/perro2.png' %}">
+                        <p id="numero_2">{{mensaje_id.perro2_dislike}}</p>
+                    </div>
+                    <div class="div_relativo">
+                        <img id="imagen_perro_3" src="{% static 'apli_3/images/perro3.png' %}">
+                        <p id="numero_3">{{mensaje_id.perro3_aburrido}}</p>
+                    </div>    
+                </div>
+            </div>
+            <input type="hidden" name="mensaje_id" value="{{mensaje_id.id}}">
+            <textarea name="textarea_2" id="" cols="80" rows="10" readonly>{{mensaje_id.mensaje_cliente}}</textarea> 
+        </form>
+        <div id="div_boton_salir">
+            <a href="/kaligram/" class="boton_salir">get out</a>
+        </div>
+    </div>
+</div>
+    
+<hr style="color: white;"> 
+<!-- =========================================================================================================== -->
+
+<div class="contenedor_mensajes">
+    <div id="div_mensaje_no_enviado">
+        <div id="div_avatar_3">     
+            <img id="imagen_avatar_3" src="{{cliente_imagen}}" alt="imagen del cliente">
+        </div>
+        <p class="texto_1">
+            {{cliente_nombre}}!!!
+            
+        </p>
+        <form action="/procesar_respuesta/" method="post" class="mensajeria">{% csrf_token %} 
+            <textarea name="textarea" id="" cols="80" rows="10"></textarea> <br>
+            <input type="submit" value="grama" name="boton_grama">
+        </form> 
+        <div id="div_boton_salir">
+            <a href="/kaligram/" class="boton_salir">get out</a>
+        </div>
+    </div>
+</div>
+    
+<hr style="color: white;"> 
+
+{% for mensaje in mensajes %}
+    {% if mensaje.mensaje_padre == None %}
+        {{empty}}
+    {% elif mensaje.mensaje_padre == mensaje_id %}
+
+    <form id="formulario" method="post">{% csrf_token %}
+        <!-- DIV CON EL TEXTAREA Y LOS BOTONES DE LIKES -->
+        <div class="div_consecutivos_mensajes">
+            <div id="div_central_mensaje">
+                <p class="texto_3">
+                    {{mensaje.nombre_cliente}} 
+                </p> 
+                <div id="div_avatar_4">                      
+                    <img id="imagen_avatar_3" src="{{mensaje.imagen_cliente_1}}" alt="imagen del cliente">
+                </div>
+                <p class="texto_3">
+                    {{mensaje.id}}
+                </p>
+                <input type="hidden" name="mensaje_id" value="{{mensaje.id}}">
+                <textarea name="textarea_2" id="textarea" cols="30" rows="10" readonly>{{mensaje.mensaje_cliente}}</textarea> <br>
+                
+                <input type="submit" value="like" formaction="/like/" name="boton_like" id="boton_perro_like">
+                <input type="submit" value="dislike" formaction="/dislike/" name="boton_like" id="boton_perro_dislike">
+                <input type="submit" value="boring" formaction="/boring/" name="boton_like" id="boton_perro_aburrido"> 
+                <div id="div_boton_answer">
+                    <a class="boton_answer" href="{% url 'respuesta' mensaje_id=mensaje.id %}" value="answer">answer<a/>
+                </div>
+                
+            </div>                   
+        </div> 
+        <!-- DIV CON LAS FOTOS DE LOS PERROS LIKES. -->
+        <div class="div_consecutivos_mensajes">
+            <div id="div_perros">
+                <div class="div_relativo">
+                    <img id="imagen_perro_1" id="imagen_like" src="{% static 'apli_3/images/perro1.png' %}"> 
+                    <p id="numero_1">{{mensaje.perro1_like}}</p>
+                </div>
+                <div class="div_relativo">
+                    <img id="imagen_perro_2" src="{% static 'apli_3/images/perro2.png' %}">
+                    <p id="numero_2">{{mensaje.perro2_dislike}}</p>
+                </div>
+                <div class="div_relativo">
+                    <img id="imagen_perro_3" src="{% static 'apli_3/images/perro3.png' %}">
+                    <p id="numero_3">{{mensaje.perro3_aburrido}}</p>
+                </div>    
+            </div>
+        </div>  
+    </form>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+       
+            
+     
+
+
+
+
+
    
-</body>
-</html>
