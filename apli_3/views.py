@@ -152,7 +152,7 @@ class Mi_vista(View):
             )
             self.estado_3.save()
             self.mensaje_all = Mensaje.objects.order_by("-mensaje_padre")
-
+            
             return render(
                 request, 
                 "respuesta.html",
@@ -171,8 +171,6 @@ class Mi_vista(View):
             )
  
     def like(self, request):
-        referer_url = request.META.get('HTTP_REFERER', '/')
-
         self.cliente_imagen = request.session["cliente_imagen"]
         self.textarea_2 = request.POST["textarea_2"]
         self.mensaje_id = request.POST["mensaje_id"]

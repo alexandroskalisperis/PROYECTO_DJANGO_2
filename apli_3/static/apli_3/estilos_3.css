@@ -317,17 +317,15 @@ input[name="boton_like"]:hover {
     position: absolute;
     width: 120px;
     height: 200px;
-    border: 1px solid white;
     right: 0px;
-    top: 100px;
+    top: 20px;
 }
 #respuesta_div_likes_2 {
     position: absolute;
     width: 120px;
     height: 270px;
-    border: 1px solid white;
     right: -150px;
-    top: 70px;
+    top: -10px;
 }
 
 
